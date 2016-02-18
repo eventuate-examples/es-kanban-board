@@ -1,11 +1,11 @@
 
 # Real-time, multi-user Kanban Board demo
 
-This sample application, which is written in Java and uses Spring Boot, demonstrates how you can use the Eventuate&trade; Platform to build a real-time, multi-user collaborative application.
+This sample application, which is written in Java and uses Spring Boot, demonstrates how you can use the [Eventuate&trade; Platform](http://eventuate.io/) to build a real-time, multi-user collaborative application.
 The Kanban Board application enables users to collaboratively create and edit Kanban boards and tasks.
 Changes made by one user to a board or a task are immediately visible to other users viewing the same board or task.
 
-The Kanban Board application is built using Eventuate&trade;'s Event Sourcing based programming model, which is ideally suited for this kind of application.
+The Kanban Board application is built using [Eventuate&trade;'s](http://eventuate.io/) Event Sourcing based programming model, which is ideally suited for this kind of application.
 The application persists business objects, such as `Boards` and `Tasks`, as a sequence of state changing events.
 When a user creates or updates a board or task, the application saves an event in the event store.
 The event store delivers each event to interested subscribers.
@@ -26,6 +26,16 @@ The application consists of the following:
 The Kanban Board server has a Spring MVC-based REST API for creating, updating and querying Kanban boards and tasks.
 It also has a STOMP-over-WebSocket API, which pushes updates to boards and tasks to the AngularJS application.
 It can be deployed as either a monolithic server or as a set of microservices. Read on to find out more.
+
+# About Eventuate&trade;
+
+![](http://eventuate.io/i/logo.gif)
+
+[Eventuate](http://eventuate.io/) is a application platform for writing microservices.
+It provides a simple yet powerful event-driven programming model that is based on event sourcing and Command Query Responsibility Segregation (CQRS).
+Eventuate solves the distributed data management problems inherent in a microservice architecture.
+It consists of a scalable, distributed event store server and client libraries for various languages and frameworks including Java, Scala, and the Spring framework. [Learn more.](http://eventuate.io/)
+
 
 # Kanban Board Server design
 
