@@ -1,7 +1,7 @@
 
 # Real-time, multi-user Kanban Board demo
 
-This sample application demonstrates how you can use the Eventuate&trade; Platform to build a real-time, multi-user collaborative application.
+This sample application, which is written in Java and uses Spring Boot, demonstrates how you can use the Eventuate&trade; Platform to build a real-time, multi-user collaborative application.
 The Kanban Board application enables users to collaboratively create and edit Kanban boards and tasks.
 Changes made by one user to a board or a task are immediately visible to other users viewing the same board or task.
 
@@ -29,7 +29,7 @@ It can be deployed as either a monolithic server or as a set of microservices. R
 
 # Kanban Board Server design
 
-The Kanban Board server is written using the [Eventuate Client Framework for Java](http://eventuate.io/docs/java/eventuate-client-framework-for-java.html), which provides an event sourcing based programming model.
+The Kanban Board server is written using the [Eventuate Client Framework for Java](http://eventuate.io/docs/java/eventuate-client-framework-for-java.html), which provides an event sourcing based programming model for Java/Spring-Boot aplications.
 The server persists boards and tasks as events in the [Eventuate event store](http://eventuate.io/howeventuateworks.html).
 The Kanban Board server also maintains a materialized view of boards and tasks in MongoDB.
 
