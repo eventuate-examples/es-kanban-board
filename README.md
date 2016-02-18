@@ -1,7 +1,3 @@
----
-layout: indexwithhelp
-title: Real-time, multi-user Kanban Board demo
----
 
 # Real-time, multi-user Kanban Board demo
 
