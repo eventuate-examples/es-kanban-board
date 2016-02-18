@@ -90,6 +90,7 @@ export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_IP_ADDRESS}/mydb
 You can then build the application using this Gradle command:
 
 ```
+cd java-server
 ./gradlew clean build
 ```
 
