@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse",
+  "type": "object",
+  "properties": {
+    "boards": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards",
+      "type": "array",
+      "items": {
+        "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0",
+        "type": "object",
+        "properties": {
+          "createdBy": {
+            "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0/createdBy",
+            "type": "string"
+          },
+          "createdDate": {
+            "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0/createdDate",
+            "type": "string"
+          },
+          "id": {
+            "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0/id",
+            "type": "string"
+          },
+          "title": {
+            "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0/title",
+            "type": "string"
+          },
+          "updatedBy": {
+            "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0/updatedBy",
+            "type": "string"
+          },
+          "updatedDate": {
+            "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardsQueryResponse/boards/0/updatedDate",
+            "type": "string"
+          }
+        },
+        "required": [
+          "createdBy",
+          "createdDate",
+          "id",
+          "title",
+          "updatedBy",
+          "updatedDate"
+        ]
+      },
+      "required": [
+        "0"
+      ]
+    }
+  },
+  "required": [
+    "boards"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "definitions": {
+    "AuditEntry": {
+      "type": "object",
+      "properties": {
+        "when": {
+          "id": "http://model.common.kanban.examples.eventstore.chrisrichardson.net/AuditEntry/when",
+          "type": "string"
+        },
+        "who": {
+          "id": "http://model.common.kanban.examples.eventstore.chrisrichardson.net/AuditEntry/who",
+          "type": "string"
+        }
+      },
+      "required": ["when", "who"]
+    }
+  },
+
+  "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo",
+  "type": "object",
+  "properties": {
+    "boardId": {
+      "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/boardId",
+      "type": "string"
+    },
+    "creation": { "$ref": "#/definitions/AuditEntry" },
+    "deleted": {
+      "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/deleted",
+      "type": "boolean"
+    },
+    "status": {
+      "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/status",
+      "type": "string"
+    },
+    "taskDetails": {
+      "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/taskDetails",
+      "type": "object",
+      "properties": {
+        "description": {
+          "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/taskDetails/description",
+          "type": "object",
+          "properties": {
+            "description": {
+              "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/taskDetails/description/description",
+              "type": "string"
+            }
+          }
+        },
+        "title": {
+          "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/taskDetails/title",
+          "type": "string"
+        }
+      }
+    },
+    "update": { "$ref": "#/definitions/AuditEntry" }
+  },
+  "required": [
+    "boardId",
+    "creation",
+    "deleted",
+    "status",
+    "taskDetails",
+    "update"
+  ]
+}

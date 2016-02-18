@@ -1,0 +1,40 @@
+@import "../scripts/components/WorkFlow/KanbanWorkflow";
+@import "../scripts/components/Board/KanbanBoard";
+@import "../scripts/components/BoardList/KanbanBoardList";
+@import "../scripts/components/Column/KanbanColumn";
+@import "../scripts/components/Task/KanbanTask";
+@import "../scripts/components/Containers/Containers";
+
+
+//html, body {margin:0;padding:0;height:100%}
+body { padding-top: 70px; padding-bottom:285px; }
+
+.row-full, .row-full > [class*="col-"]{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex:1 1 auto;
+}
+.row-full {
+  width: 100%; margin: 0;
+}
+.xrow-full {
+  width: 100%;
+}
+
+.row-full > [class*="col-"]:not(:first-of-type){
+  padding-left: 0;
+
+}
+.row-full > [class*="col-"]:not(:last-of-type) {
+  padding-right: 0;
+}
+//.row.row-full > [class*="col-"]{
+//  margin-bottom: -99999px;
+//  padding-bottom: 99999px;
+//}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 14px;
+  margin-bottom: 7px;
+}

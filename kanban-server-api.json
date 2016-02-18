@@ -1,0 +1,816 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {
+      "name": "Contact Email"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "api-query-controller",
+      "description": "Api Query Controller"
+    },
+    {
+      "name": "api-command-controller",
+      "description": "Api Command Controller"
+    },
+    {
+      "name": "auth-controller",
+      "description": "Auth Controller"
+    }
+  ],
+  "paths": {
+    "/api/authenticate": {
+      "post": {
+        "tags": [
+          "auth-controller"
+        ],
+        "summary": "doAuth",
+        "operationId": "doAuthUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AuthResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/boards": {
+      "get": {
+        "tags": [
+          "api-query-controller"
+        ],
+        "summary": "listAllBoards",
+        "operationId": "listAllBoardsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BoardsQueryResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "saveBoard",
+        "operationId": "saveBoardUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "board",
+            "description": "board",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BoardInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BoardResponse"
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/api/boards/{id}": {
+      "get": {
+        "tags": [
+          "api-query-controller"
+        ],
+        "summary": "getBoard",
+        "operationId": "getBoardUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BoardQueryResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks": {
+      "get": {
+        "tags": [
+          "api-query-controller"
+        ],
+        "summary": "listAllTasks",
+        "operationId": "listAllTasksUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "boardId",
+            "in": "query",
+            "description": "boardId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BacklogResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "saveTask",
+        "operationId": "saveTaskUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "task",
+            "description": "task",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TaskResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}": {
+      "put": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "updateTask",
+        "operationId": "updateTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskDetails"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "deleteTask",
+        "operationId": "deleteTaskUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/backlog": {
+      "put": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "backlogTask",
+        "operationId": "backlogTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/complete": {
+      "put": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "completeTask",
+        "operationId": "completeTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangeTaskStatusRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/history": {
+      "get": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "getHistory",
+        "operationId": "getHistoryUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/HistoryResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/schedule": {
+      "put": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "scheduleTask",
+        "operationId": "scheduleTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangeTaskStatusRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}/start": {
+      "put": {
+        "tags": [
+          "api-command-controller"
+        ],
+        "summary": "startTask",
+        "operationId": "startTaskUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangeTaskStatusRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AuthRequest": {
+      "required": [ "email" ],
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "BoardInfo": {
+      "required": [ "title", "creation", "update" ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "creation": {
+          "$ref": "#/definitions/AuditEntry"
+        },
+        "update": {
+          "$ref": "#/definitions/AuditEntry"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ChangeTaskStatusRequest": {
+      "properties": {
+        "boardId": {
+          "type": "string"
+        }
+      }
+    },
+    "HistoryResponse": {
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HistoryEvent"
+          }
+        }
+      }
+    },
+    "BoardsQueryResponse": {
+      "properties": {
+        "boards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Board"
+          }
+        }
+      }
+    },
+    "BacklogResponse": {
+      "properties": {
+        "backlog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "createdDate": {
+                "type": "integer"
+              },
+              "updatedBy": {
+                "type": "string"
+              },
+              "updatedDate": {
+                "type": "integer"
+              },
+              "deleted": {
+                "type": "boolean"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "backlog"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+
+          }
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "boardId": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "createdBy": {
+                "type": "string"
+              },
+              "createdDate": {
+                "type": "integer"
+              },
+              "updatedBy": {
+                "type": "string"
+              },
+              "updatedDate": {
+                "type": "integer"
+              },
+              "deleted": {
+                "type": "boolean"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "started",
+                  "scheduled",
+                  "completed"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "HistoryEvent": {
+      "properties": {
+        "eventData": {
+          "$ref": "#/definitions/Event"
+        },
+        "eventType": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "AuthResponse": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "BoardResponse": {
+      "properties": {
+        "createdBy": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "updatedDate": {
+          "type": "integer"
+        }
+      }
+    },
+    "TaskInfo": {
+      "required": [ "creation", "update", "taskDetails" ],
+      "properties": {
+        "boardId": {
+          "type": "string"
+        },
+        "creation": {
+          "$ref": "#/definitions/AuditEntry"
+        },
+        "update": {
+          "$ref": "#/definitions/AuditEntry"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "backlog",
+            "started",
+            "scheduled",
+            "completed"
+          ]
+        },
+        "taskDetails": {
+          "$ref": "#/definitions/TaskDetails"
+        }
+      }
+    },
+    "Board": {
+      "properties": {
+        "createdBy": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "updatedDate": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "TaskDescription": {
+      "properties": {
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "AuditEntry": {
+      "required": [ "when", "who" ],
+      "properties": {
+        "when": {
+          "type": "integer"
+        },
+        "who": {
+          "type": "string"
+        }
+      }
+    },
+    "TaskDetails": {
+      "required": [ "title" ],
+      "properties": {
+        "description": {
+          "$ref": "#/definitions/TaskDescription"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "required": [ "updatedBy", "updatedDate" ],
+      "properties": {
+        "boardId": {
+          "type": [ "string", "null" ]
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "backlog",
+            "started",
+            "scheduled",
+            "completed"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "updatedDate": {
+          "type": "integer"
+        }
+      }
+    },
+    "BoardQueryResponse": {
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Board"
+        }
+      }
+    },
+    "TaskResponse": {
+      "properties": {
+        "boardId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "backlog",
+            "started",
+            "scheduled",
+            "completed"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "updatedDate": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

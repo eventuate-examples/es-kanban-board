@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type" : "object",
+  "id" : "TaskUpdatedEvent",
+  "properties" : {
+    "updatedBy" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "updatedDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "title" : {
+      "type" : "string"
+    }
+  },
+  "required": [
+    "title",
+    "updatedBy",
+    "updatedDate",
+    "description"
+  ]
+}

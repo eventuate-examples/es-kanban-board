@@ -1,0 +1,37 @@
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "definitions": {
+    "AuditEntry": {
+      "type": "object",
+      "properties": {
+        "when": {
+          "id": "http://model.common.kanban.examples.eventstore.chrisrichardson.net/AuditEntry/when",
+          "type": "string"
+        },
+        "who": {
+          "id": "http://model.common.kanban.examples.eventstore.chrisrichardson.net/AuditEntry/who",
+          "type": "string"
+        }
+      },
+      "required": ["when", "who"]
+    }
+  },
+
+  "id": "http://board.common.kanban.examples.eventstore.chrisrichardson.net/BoardInfo",
+  "type": "object",
+  "properties": {
+    "creation": { "$ref": "#/definitions/AuditEntry" },
+    "title": {
+      "id": "http://board.common.kanban.examples.eventstore.chrisrichardson.net/BoardInfo/title",
+      "type": "string"
+    },
+    "update": { "$ref": "#/definitions/AuditEntry" }
+  },
+  "required": [
+    "creation",
+    "title",
+    "update"
+  ]
+}

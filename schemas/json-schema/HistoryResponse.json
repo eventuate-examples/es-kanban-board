@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/HistoryResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/HistoryResponse/data",
+      "type": "array",
+      "items": {
+        "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/HistoryResponse/data/0",
+        "type": "object",
+        "properties": {
+          "eventData": {
+            "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/HistoryResponse/data/0/eventData",
+            "type": "object",
+            "properties": {}
+          },
+          "eventType": {
+            "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/HistoryResponse/data/0/eventType",
+            "type": "string"
+          },
+          "id": {
+            "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/HistoryResponse/data/0/id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "eventData",
+          "eventType",
+          "id"
+        ]
+      },
+      "required": [
+        "0"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

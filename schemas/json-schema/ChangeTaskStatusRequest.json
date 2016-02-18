@@ -1,0 +1,16 @@
+ 
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/ChangeTaskStatusRequest",
+  "type": "object",
+  "properties": {
+    "boardId": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/ChangeTaskStatusRequest/boardId",
+      "type": "string"
+    }
+  },
+  "required": [
+    "boardId"
+  ]
+}

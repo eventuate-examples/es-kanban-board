@@ -1,0 +1,321 @@
+.rwd-pudgy h1, .rwd-pudgy .h1, .rwd-pudgy h2, .rwd-pudgy .h2, .rwd-pudgy h3, .rwd-pudgy .h3 {
+  margin-top: 7px;
+  margin-bottom: 5px; }
+
+.rwd-pudgy h1,
+.rwd-pudgy .h1 {
+  font-size: 26px; }
+
+.rwd-pudgy h2,
+.rwd-pudgy .h2 {
+  font-size: 22px; }
+
+.rwd-pudgy h3,
+.rwd-pudgy .h3 {
+  font-size: 18px; }
+
+.rwd-pudgy h4,
+.rwd-pudgy .h4 {
+  font-size: 15px; }
+
+.rwd-pudgy h5,
+.rwd-pudgy .h5 {
+  font-size: 12px; }
+
+.rwd-pudgy h6,
+.rwd-pudgy .h6 {
+  font-size: 10px; }
+
+.rwd-pudgy hr {
+  margin-top: 7px;
+  margin-bottom: 7px; }
+
+.rwd-pudgy .hide-pudgy {
+  display: none; }
+
+.rwd-pudgy .btn-lg, .rwd-pudgy .btn-group-lg > .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px; }
+
+.rwd-pudgy body {
+  padding-top: 70px;
+  padding-bottom: 190px; }
+
+.b_backlog_items {
+  height: 285px; }
+  .rwd-pudgy .b_backlog_items {
+    height: 190px; }
+
+.container-fluid--narrow {
+  width: 60%; }
+
+.b_board {
+  position: relative;
+  max-width: 100%; }
+  .b_board .b_board--table-container {
+    width: 100%;
+    height: 0;
+    position: relative; }
+    .b_board .b_board--table-container table {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0; }
+  .b_board table {
+    width: 100%; }
+    .b_board table tr {
+      vertical-align: top;
+      height: 1%; }
+      .b_board table tr td {
+        height: 100%; }
+    .b_board table .main {
+      min-height: 66.66%;
+      max-height: 66.66%; }
+      .b_board table .main td {
+        width: 33.33%;
+        overflow-y: auto; }
+    .b_board table .foot {
+      min-height: 33.33%;
+      max-height: 33.33%; }
+      .b_board table .foot td {
+        width: 100%;
+        overflow-y: auto; }
+  .b_board td {
+    vertical-align: top;
+    min-height: 100%; }
+
+#historyTaskModal .modal-body {
+  max-height: 300px;
+  overflow-y: auto; }
+
+.b_board_title {
+  border: 1px solid #999;
+  overflow: hidden;
+  word-break: break-all;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: .5em;
+  cursor: pointer;
+  min-height: 8.5em;
+  display: block;
+  color: inherit; }
+  .b_board_title.m_add_new {
+    background-color: rgba(10, 12, 238, 0.1);
+    border: 1px solid #B3B6EE;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer; }
+    .b_board_title.m_add_new > * {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      display: block;
+      margin: 0; }
+  .b_board_title .b_board_title-nl {
+    float: left;
+    font-size: 10px;
+    font-family: monospace;
+    adding: .5em;
+    background-color: antiquewhite;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    min-width: 2em;
+    text-align: center; }
+
+.b_board_list-wrap {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid #BBB;
+  border-left: 0px none;
+  border-right: 0px none;
+  padding: 0 .5em;
+  position: relative; }
+  .b_board_list-wrap.m_collapsed > * {
+    max-height: 12em;
+    overflow-y: auto; }
+  .b_board_list-wrap:before, .b_board_list-wrap:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1.5em;
+    z-index: 1; }
+  .b_board_list-wrap:before {
+    top: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#666666+0,000000+100&amp;1+0,0+100 */
+    background: -moz-linear-gradient(top, white 0%, transparent 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, transparent));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, white 0%, transparent 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, white 0%, transparent 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, white 0%, transparent 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, white 0%, transparent 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#00000000',GradientType=0 );
+    /* IE6-9 */ }
+  .b_board_list-wrap:after {
+    bottom: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,666666+100&amp;0+0,1+100 */
+    background: -moz-linear-gradient(top, transparent 0%, white 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, transparent), color-stop(100%, white));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, transparent 0%, white 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, transparent 0%, white 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, transparent 0%, white 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, transparent 0%, white 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#FFFFFF',GradientType=0 );
+    /* IE6-9 */ }
+
+.b_column {
+  padding: .5em;
+  background-color: white;
+  border-right: 1px solid #333;
+  width: 100%;
+  display: inline-block; }
+  .b_column:before, .b_column:after {
+    display: table;
+    content: '';
+    clear: both; }
+  .b_column.m_is-alert {
+    background-color: rgba(255, 76, 56, 0.05);
+    border: .5em dashed #444 !important;
+    border-radius: 10px; }
+  .b_column--tasks {
+    list-style: none;
+    padding: 0; }
+    .b_column--tasks.m_vertical {
+      min-height: 39vh; }
+    .b_column--tasks.m_horizontal {
+      vertical-align: top; }
+  [class*="col-"]:last-of-type .b_column {
+    border-right: 0 none; }
+
+.b_column-wrap--bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 33vh; }
+  .b_column-wrap--bottom .b_column {
+    height: 100%;
+    max-height: 100%;
+    overflow-x: auto; }
+
+.break-lines {
+  word-break: break-all; }
+
+.b_task {
+  display: inline-block;
+  vertical-align: top;
+  padding: .5em;
+  margin: 0 .5em 1em;
+  background-color: rgba(24, 90, 230, 0.34);
+  background-color: rgba(255, 249, 76, 0.38);
+  border: 1px solid #333;
+  min-height: 150px;
+  max-height: 250px;
+  max-width: 250px;
+  cursor: pointer;
+  -webkit-user-drag: element;
+  user-drag: element;
+  overflow: hidden;
+  position: relative;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .rwd-pudgy .b_task {
+    min-height: 100px;
+    max-height: 200px; }
+  .b_task.m_is-moving {
+    cursor: move; }
+  .b_task.m_absolute {
+    position: absolute;
+    z-index: 1050; }
+  .b_task .b_task-actions {
+    float: right; }
+    .b_task .b_task-actions .btn:not(:first-of-type) {
+      padding-left: 2px; }
+    .b_task .b_task-actions .btn:not(:last-of-type) {
+      padding-right: 2px; }
+  .b_task .b_task-description {
+    margin-top: .5em;
+    padding-top: .5em;
+    border-top: #666 solid 1px;
+    font-size: 10px;
+    font-family: "Book Antiqua", Georgia, "Times New Roman", serif; }
+
+.b_cnt {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  max-width: 100%; }
+  .b_cnt.m_fixed {
+    overflow: hidden; }
+    .b_cnt.m_fixed > .b_cnt-body {
+      overflow: hidden;
+      max-height: 100%;
+      min-height: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      height: 1px;
+      width: 100%; }
+  .b_cnt.m_vert {
+    overflow-y: auto; }
+    .b_cnt.m_vert > .b_cnt-body {
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%; }
+  .b_cnt.m_hor {
+    overflow-x: auto; }
+    .b_cnt.m_hor > .b_cnt-body {
+      overflow: hidden;
+      height: 100%;
+      max-height: 100%; }
+
+body {
+  padding-top: 70px;
+  padding-bottom: 285px; }
+
+.row-full, .row-full > [class*="col-"] {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1 1 auto; }
+
+.row-full {
+  width: 100%;
+  margin: 0; }
+
+.xrow-full {
+  width: 100%; }
+
+.row-full > [class*="col-"]:not(:first-of-type) {
+  padding-left: 0; }
+
+.row-full > [class*="col-"]:not(:last-of-type) {
+  padding-right: 0; }
+
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 14px;
+  margin-bottom: 7px; }
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "definitions": {
+    "AuditEntry": {
+      "type": "object",
+      "properties": {
+        "when": {
+          "id": "http://model.common.kanban.examples.eventstore.chrisrichardson.net/AuditEntry/when",
+          "type": "string"
+        },
+        "who": {
+          "id": "http://model.common.kanban.examples.eventstore.chrisrichardson.net/AuditEntry/who",
+          "type": "string"
+        }
+      },
+      "required": ["when", "who"]
+    }
+  },
+
+  "id": "http://event.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskUpdatedEvent",
+  "type": "object",
+  "properties": {
+    "taskDetails": {
+      "id": "http://event.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskUpdatedEvent/taskDetails",
+      "type": "object",
+      "properties": {
+        "description": {
+          "id": "http://event.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskUpdatedEvent/taskDetails/description",
+          "type": "object",
+          "properties": {
+            "description": {
+              "id": "http://event.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskUpdatedEvent/taskDetails/description/description",
+              "type": "string"
+            }
+          }
+        },
+        "title": {
+          "id": "http://task.common.kanban.examples.eventstore.chrisrichardson.net/TaskInfo/taskDetails/title",
+          "type": "string"
+        }
+      }
+    },
+    "update": { "$ref": "#/definitions/AuditEntry" }
+  },
+  "required": [
+    "taskDetails",
+    "update"
+  ]
+}

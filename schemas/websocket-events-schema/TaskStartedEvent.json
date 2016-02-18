@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type" : "object",
+  "id" : "TaskStartedEvent",
+  "properties" : {
+    "updatedBy" : {
+      "type" : "string"
+    },
+    "boardId" : {
+      "type" : "string"
+    },
+    "updatedDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "status" : {
+      "type" : "string",
+      "enum" : [ "started" ]
+    }
+  },
+  "required": [
+    "boardId",
+    "updatedBy",
+    "updatedDate",
+    "status"
+  ]
+}

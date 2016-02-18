@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+dependencies {
+    compile project(":common-task")
+    compile project(":common-web")
+    compile project(":common-auth")
+
+    compile "net.chrisrichardson.eventstore.client:eventstore-java-client_2.10:$eventStoreClientVersion"
+
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+
+    testCompile "junit:junit:4.11"
+}

@@ -1,0 +1,16 @@
+<div class="b_column {{ isMoving ? 'm_is-moving' : ''}} {{ isColumnAlert && !isMovingHost? 'm_is-alert' : ''}}" data-column-status="{{ ctrl.status }}">
+    <h3>{{ statusVerbose }}: <small>{{ tasks | taskStatus:ctrl.status | count }}</small></h3>
+    <hr/>
+
+    <div cnt-horizontal=".b_task" ng-if="ctrl.status === 'backlog'" >
+        <div class="b_column--tasks m_horizontal">
+            <div class="b_task">
+                <a class="btn btn-lg btn-primary" data-toggle="modal" data-target="#newTaskModal">Create Task </a>
+            </div>
+            <div kbn-task task="task" ng-repeat="task in tasks | taskStatus:ctrl.status | orderBy: 'createdDate' "></div>
+        </div>
+    </div>
+    <div class="b_column--tasks m_vertical"  ng-if="ctrl.status !== 'backlog'">
+        <div  kbn-task task="task" ng-repeat="task in tasks | taskStatus:ctrl.status | orderBy: 'createdDate' "></div>
+    </div>
+</div>

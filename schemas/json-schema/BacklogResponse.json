@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "boardId": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/boardId",
+          "type": "string"
+        },
+        "createdBy": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/createdBy",
+          "type": "string"
+        },
+        "createdDate": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/createdDate",
+          "type": "string"
+        },
+        "data": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/data",
+          "type": "object",
+          "properties": {
+            "description": {
+              "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/data/description",
+              "type": "string"
+            }
+          }
+        },
+        "deleted": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/deleted",
+          "type": "boolean"
+        },
+        "id": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/id",
+          "type": "string"
+        },
+        "status": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/status",
+          "type": "string"
+        },
+        "title": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/title",
+          "type": "string"
+        },
+        "updatedBy": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/updatedBy",
+          "type": "string"
+        },
+        "updatedDate": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/Task/updatedDate",
+          "type": "string"
+        }
+      },
+      "required": [
+          "boardId",
+          "createdBy",
+          "createdDate",
+          "data",
+          "deleted",
+          "id",
+          "status",
+          "title",
+          "updatedBy",
+          "updatedDate"]
+    }
+  },
+
+  "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/BacklogResponse",
+  "type": "object",
+  "properties": {
+    "backlog": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/BacklogResponse/backlog",
+      "type": "array",
+      "items": { "$ref": "#/definitions/Task" },
+    "tasks": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/BacklogResponse/tasks",
+      "type": "array",
+      "items": { "$ref": "#/definitions/Task" }
+    }
+  },
+  "required": [
+    "backlog",
+    "tasks"
+  ]
+}

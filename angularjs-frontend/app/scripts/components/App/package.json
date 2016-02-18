@@ -1,0 +1,6 @@
+{
+  "name": "KanbanApp",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./KanbanApp.js"
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type" : "object",
+  "id" : "TaskCreatedEvent",
+  "properties" : {
+    "updatedBy" : {
+      "type" : "string"
+    },
+    "createdDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "deleted" : {
+      "type" : "boolean"
+    },
+    "createdBy" : {
+      "type" : "string"
+    },
+    "boardId" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "updatedDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "title" : {
+      "type" : "string"
+    },
+    "status" : {
+      "type" : "string",
+      "enum" : [ "backlog", "scheduled", "started", "completed" ]
+    }
+  },
+  "required": [
+    "title",
+    "createdBy",
+    "createdDate",
+    "updatedBy",
+    "updatedDate",
+    "description",
+    "status"
+  ]
+}

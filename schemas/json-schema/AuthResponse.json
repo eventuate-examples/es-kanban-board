@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.commonauth.kanban.examples.eventstore.chrisrichardson.net/AuthResponse",
+  "type": "object",
+  "properties": {
+    "token": {
+      "id": "http://model.commonauth.kanban.examples.eventstore.chrisrichardson.net/AuthResponse/token",
+      "type": "string"
+    }
+  },
+  "required": [
+    "token"
+  ]
+}

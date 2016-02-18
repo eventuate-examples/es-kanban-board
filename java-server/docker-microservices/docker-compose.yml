@@ -1,0 +1,77 @@
+apigateway:
+  image: java:8
+  working_dir: /app
+  volumes:
+    - ../api-gateway-service/build/libs:/app
+  command: java -jar /app/api-gateway-service.jar --board.commandside.service.host=boardcommandside --board.queryside.service.host=boardqueryside --task.commandside.service.host=taskcommandside --task.queryside.service.host=taskqueryside
+  ports:
+    - "8080:8080"
+  links:
+    - boardcommandside
+    - taskcommandside
+    - boardqueryside
+    - taskqueryside
+  environment:
+    EVENTUATE_API_KEY_ID:
+    EVENTUATE_API_KEY_SECRET:
+
+boardcommandside:
+  image: java:8
+  working_dir: /app
+  volumes:
+    - ../board-command-side-service/build/libs:/app
+  command: java -jar /app/board-command-side-service.jar
+  ports:
+    - "8081:8080"
+  environment:
+    EVENTUATE_API_KEY_ID:
+    EVENTUATE_API_KEY_SECRET:
+
+taskcommandside:
+  image: java:8
+  working_dir: /app
+  volumes:
+    - ../task-command-side-service/build/libs:/app
+  command: java -jar /app/task-command-side-service.jar
+  ports:
+    - "8082:8080"
+  environment:
+    EVENTUATE_API_KEY_ID:
+    EVENTUATE_API_KEY_SECRET:
+
+boardqueryside:
+  image: java:8
+  working_dir: /app
+  volumes:
+    - ../board-query-side-service/build/libs:/app
+  command: java -jar /app/board-query-side-service.jar
+  ports:
+    - "8083:8080"
+  links:
+    - mongodb
+  environment:
+    EVENTUATE_API_KEY_ID:
+    EVENTUATE_API_KEY_SECRET:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+
+taskqueryside:
+  image: java:8
+  working_dir: /app
+  volumes:
+    - ../task-query-side-service/build/libs:/app
+  command: java -jar /app/task-query-side-service.jar
+  ports:
+    - "8084:8080"
+  links:
+    - mongodb
+  environment:
+    EVENTUATE_API_KEY_ID:
+    EVENTUATE_API_KEY_SECRET:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+
+mongodb:
+  image: mongo:3.0.4
+  hostname: mongodb
+  command: mongod --smallfiles
+  ports:
+    - "27017:27017"

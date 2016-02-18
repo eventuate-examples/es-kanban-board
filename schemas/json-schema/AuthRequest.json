@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.commonauth.kanban.examples.eventstore.chrisrichardson.net/AuthRequest",
+  "type": "object",
+  "properties": {
+    "email": {
+      "id": "http://model.commonauth.kanban.examples.eventstore.chrisrichardson.net/AuthRequest/email",
+      "type": "string"
+    }
+  },
+  "required": [
+    "email"
+  ]
+}

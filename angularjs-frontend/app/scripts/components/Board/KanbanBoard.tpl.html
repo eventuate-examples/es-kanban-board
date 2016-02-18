@@ -1,0 +1,130 @@
+<div class="b_board {{ isHidden ? 'hidden': ''}}" data-board-id="{{ board.id }}">
+
+    <div class="pull-right"><a ng-click="deselectBoard()" class="btn btn-link btn-lg bg-warning">Close <span>&times;</span></a></div>
+
+    <h2>Board: <b>{{ board.title }}</b></h2>
+    <div class="hide-pudgy">Created by {{ board.creator }} {{ board.createdDate | timeAgo }}</div>
+
+    <!--<div class="">-->
+        <!--<label>Actions:</label>-->
+        <!-- -->
+    <!--</div>-->
+
+    <div class="row row-full">
+        <div class="col-xs-4 row-full">
+            <div kbn-column status="scheduled" tasks="tasks" class="row-full"></div>
+        </div>
+        <div class="col-xs-4 row-full">
+            <div kbn-column status="started" tasks="tasks" class="row-full" ></div>
+        </div>
+        <div class="col-xs-4 row-full">
+            <div kbn-column status="completed" tasks="tasks" class="row-full" ></div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div kbn-column status="backlog" tasks="tasks" class="b_backlog_items"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class="form" ng-submit="createTask()" ng-disabled="createTaskLock">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="newTaskModalLabel">Create New Task</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label class="sr-only" for="inpTaskTitle">Task Title</label>
+                            <input type="text" class="form-control" id="inpTaskTitle" placeholder="New Task Title" autofocus ng-model="taskTitle" ng-disabled="createTaskLock">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="inpTaskDesc">Description</label>
+                            <textarea type="text" class="form-control" id="inpTaskDesc" placeholder="Description" ng-model="taskData.description" ng-disabled="createTaskLock"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="createTaskLock">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteTaskModal" tabindex="-1" role="dialog" aria-labelledby="deleteTaskModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class="form" ng-submit="deleteTask()" ng-disabled="deleteTaskLock">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="deleteTaskModalLabel">Delete This Task?</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label class="sr-only">Task Title</label>
+                            <input type="text" class="form-control" readonly placeholder="New Task Title" ng-model="deletion.task.title" >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="sr-only">Status</label>
+                            <input type="text" class="form-control" readonly placeholder="New Task Title" ng-value="deletion.task.status" >
+                        </div>
+
+                        <div class="form-group" ng-if="deletion.task.data.description">
+                            <label class="sr-only">Description</label>
+                            <textarea class="form-control" readonly placeholder="Description" ng-model="deletion.task.data.description"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger" ng-disabled="deleteTaskLock">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="historyTaskModal" tabindex="-1" role="dialog" aria-labelledby="historyTaskModalLabel">
+        <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="historyTaskModalLabel">Task History</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div ng-repeat="item in historyMarkup track by $index">
+                                    <div class="text-info" ng-if="item.info">{{item.info}}</div>
+                                    <div class="text-danger" ng-if="item.error">{{item.error}}</div>
+                                    <div class="" ng-if="!item.error && !item.info">
+                                        <code>{{ item.who }}</code> <code>{{item.what}}</code> on <i>{{item.when  | date:'medium' }}</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>

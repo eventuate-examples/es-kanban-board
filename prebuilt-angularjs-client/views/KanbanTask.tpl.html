@@ -1,0 +1,11 @@
+<div class="b_task {{ isMoving ? 'm_is-moving' : '' }}" data-task-id="{{ task.id }}">
+    <div class="b_task-actions">
+        <a class="btn btn-sm btn-link" data-toggle="modal" data-target="#historyTaskModal" ng-click="showTaskHistory()">H</a>
+        <a class="btn btn-sm btn-link" data-toggle="modal" data-target="#deleteTaskModal" ng-click="startDeleteTask()">&times;</a>
+    </div>
+    <b>{{ task.title }}</b><br/>
+    <div>Created <span class="hide-pudgy">{{ task.createdDate | timeAgo}} <br/></span> by: {{ task.createdBy }}</div>
+    <div ng-if="task.updatedDate && (task.createdDate !== task.updatedDate)">Changed {{ task.updatedDate | timeAgo }}</div>
+    <div class="b_task-description" ng-if="task.data.description">{{task.data.description}}</div>
+    <br/>
+</div>

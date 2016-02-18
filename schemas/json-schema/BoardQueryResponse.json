@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data",
+      "type": "object",
+      "properties": {
+        "createdBy": {
+          "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data/createdBy",
+          "type": "string"
+        },
+        "createdDate": {
+          "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data/createdDate",
+          "type": "string"
+        },
+        "id": {
+          "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data/id",
+          "type": "string"
+        },
+        "title": {
+          "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data/title",
+          "type": "string"
+        },
+        "updatedBy": {
+          "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data/updatedBy",
+          "type": "string"
+        },
+        "updatedDate": {
+          "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardQueryResponse/data/updatedDate",
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdBy",
+        "createdDate",
+        "id",
+        "title",
+        "updatedBy",
+        "updatedDate"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

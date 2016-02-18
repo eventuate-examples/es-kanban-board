@@ -1,0 +1,25 @@
+include 'test-utils'
+
+include 'common'
+include 'common-board'
+include 'common-task'
+include 'common-web'
+include 'common-swagger'
+
+include 'board-command-side'
+include 'task-command-side'
+include 'board-query-side'
+include 'task-query-side'
+
+include 'standalone-service'
+include 'rest-api-integration-tests'
+include 'api-gateway-service'
+include 'common-auth'
+include 'common-websocket'
+include 'board-command-side-service'
+include 'board-query-side-service'
+include 'task-command-side-service'
+include 'task-query-side-service'
+include 'common-auth-controller'
+include 'e2e-test'
+

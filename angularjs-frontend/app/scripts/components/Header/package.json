@@ -1,0 +1,6 @@
+{
+  "name": "KanbanHeader",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./KanbanHeader.js"
+}

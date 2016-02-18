@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type" : "object",
+  "id" : "Board",
+  "properties" : {
+    "createdDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "updatedBy" : {
+      "type" : "string"
+    },
+    "createdBy" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "updatedDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "title" : {
+      "type" : "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "createdBy",
+    "createdDate",
+    "updatedBy",
+    "updatedDate"
+  ]
+}

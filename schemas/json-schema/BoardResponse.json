@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse",
+  "type": "object",
+  "properties": {
+    "createdBy": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse/createdBy",
+      "type": "string"
+    },
+    "createdDate": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse/createdDate",
+      "type": "string"
+    },
+    "id": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse/id",
+      "type": "string"
+    },
+    "title": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse/title",
+      "type": "string"
+    },
+    "updatedBy": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse/updatedBy",
+      "type": "string"
+    },
+    "updatedDate": {
+      "id": "http://model.board.common.kanban.examples.eventstore.chrisrichardson.net/BoardResponse/updatedDate",
+      "type": "string"
+    }
+  },
+  "required": [
+    "createdBy",
+    "createdDate",
+    "id",
+    "title",
+    "updatedBy",
+    "updatedDate"
+  ]
+}

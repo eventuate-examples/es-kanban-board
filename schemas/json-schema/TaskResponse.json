@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse",
+  "type": "object",
+  "properties": {
+    "boardId": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/boardId",
+      "type": "string"
+    },
+    "createdBy": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/createdBy",
+      "type": "string"
+    },
+    "createdDate": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/createdDate",
+      "type": "string"
+    },
+    "data": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/data",
+      "type": "object",
+      "properties": {
+        "description": {
+          "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/data/description",
+          "type": "string"
+        }
+      }
+    },
+    "deleted": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/deleted",
+      "type": "boolean"
+    },
+    "id": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/id",
+      "type": "string"
+    },
+    "status": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/status",
+      "type": "string"
+    },
+    "title": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/title",
+      "type": "string"
+    },
+    "updatedBy": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/updatedBy",
+      "type": "string"
+    },
+    "updatedDate": {
+      "id": "http://model.task.common.kanban.examples.eventstore.chrisrichardson.net/TaskResponse/updatedDate",
+      "type": "string"
+    }
+  },
+  "required": [
+    "boardId",
+    "createdBy",
+    "createdDate",
+    "data",
+    "deleted",
+    "id",
+    "status",
+    "title",
+    "updatedBy",
+    "updatedDate"
+  ]
+}

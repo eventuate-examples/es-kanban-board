@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type" : "object",
+  "id" : "TaskDeletedEvent",
+  "properties" : {
+    "updatedBy" : {
+      "type" : "string"
+    },
+    "updatedDate" : {
+      "type" : "integer",
+      "format" : "UTC_MILLISEC"
+    },
+    "deleted" : {
+      "type" : "boolean",
+      "enum": [ true ]
+    }
+  },
+  "required": [
+    "updatedBy",
+    "updatedDate",
+    "deleted"
+  ]
+}

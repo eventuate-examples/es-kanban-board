@@ -1,0 +1,6 @@
+{
+  "name": "KanbanTask",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./KanbanTask.js"
+}

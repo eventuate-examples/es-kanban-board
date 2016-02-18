@@ -1,0 +1,58 @@
+.b_task {
+  display: inline-block;
+  vertical-align: top;
+  padding: .5em;
+  margin: 0 .5em 1em;
+  background-color: rgba(24, 90, 230, 0.34);
+  background-color : rgba(255, 249, 76, 0.38);
+  border: 1px solid #333;
+  min-height: 150px;
+  max-height: 250px;
+
+  max-width: 250px;
+  //float: left;
+
+  .rwd-pudgy & {
+    min-height: 100px;
+    max-height: 200px;
+    //max-width: 250px;
+  }
+
+  cursor: pointer;
+
+  -webkit-user-drag: element;
+  user-drag: element;
+
+  overflow: hidden;
+
+  position: relative;
+
+  font-size: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  &.m_is-moving {
+    cursor: move;
+  }
+
+  &.m_absolute {
+    position: absolute;
+    z-index: 1050;
+  }
+
+  .b_task-actions {
+    float: right;
+    .btn:not(:first-of-type){
+      padding-left: 2px;
+    }
+    .btn:not(:last-of-type){
+      padding-right: 2px;
+    }
+  }
+  .b_task-description {
+    margin-top: .5em;
+    padding-top: .5em;
+    border-top: #666 solid 1px;
+    font-size: 10px;
+    font-family: "Book Antiqua", Georgia, "Times New Roman", serif;
+  }
+}

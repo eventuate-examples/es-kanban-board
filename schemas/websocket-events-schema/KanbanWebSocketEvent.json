@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type" : "object",
+  "id" : "KanbanWebSocketEvent",
+  "required": [ "eventId", "eventData", "entityId", "eventType"],
+  "properties" : {
+    "eventId" : {
+      "type" : "string"
+    },
+    "eventData" : {
+      "type" : [ "string", "object" ]
+    },
+    "entityId" : {
+      "type" : "string"
+    },
+    "eventType" : {
+      "type" : "string"
+    }
+  }
+}

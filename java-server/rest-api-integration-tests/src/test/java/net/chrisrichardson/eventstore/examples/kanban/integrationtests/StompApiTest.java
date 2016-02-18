@@ -1,0 +1,45 @@
+
+package net.chrisrichardson.eventstore.examples.kanban.integrationtests;
+
+import net.chrisrichardson.eventstore.examples.kanban.testutil.AbstractStompApiTest;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+
+/**
+ * Created by Main on 06.10.2015.
+ */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@SpringApplicationConfiguration(classes = {RestAPITestConfiguration.class})
+@IntegrationTest({"server.port=0"})
+public class StompApiTest extends AbstractStompApiTest {
+
+    @Value("${local.server.port}")
+    private int port;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @Override
+    protected int getPort() {
+        return port;
+    }
+
+    @Override
+    protected String getHost() {
+        return "localhost";
+    }
+
+    @Override
+    protected ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
+}
