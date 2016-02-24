@@ -12,11 +12,11 @@ import java.net.URISyntaxException;
  */
 public abstract class ProxyRequestTransformer {
 
-    protected ProxyRequestTransformer predcessor;
+    protected ProxyRequestTransformer predecessor;
 
     public abstract RequestBuilder transform(HttpServletRequest request) throws NoSuchRequestHandlingMethodException, URISyntaxException, IOException;
 
-    public void setPredcessor(ProxyRequestTransformer transformer) {
-        this.predcessor = transformer;
+    public void setPredecessor(ProxyRequestTransformer transformer) {
+        this.predecessor = transformer;
     };
 }

@@ -44,19 +44,4 @@ public class BoardQuerySideConfiguration {
         HttpMessageConverter<?> additional = new MappingJackson2HttpMessageConverter();
         return new HttpMessageConverters(additional);
     }
-
-    @Bean
-    public MappingMongoConverter mappingMongoConverter(MongoDbFactory factory, MongoMappingContext context, BeanFactory beanFactory) {
-        DbRefResolver dbRefResolver = new DefaultDbRefResolver(factory);
-        MappingMongoConverter mappingConverter = new MappingMongoConverter(dbRefResolver, context);
-        try {
-            mappingConverter.setCustomConversions(beanFactory.getBean(CustomConversions.class));
-        }
-        catch (NoSuchBeanDefinitionException ignore) {}
-
-        // Don't save _class to mongo
-        mappingConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
-
-        return mappingConverter;
-    }
 }

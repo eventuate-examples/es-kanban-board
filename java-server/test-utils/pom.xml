@@ -21,6 +21,11 @@
             <artifactId>common-websocket</artifactId>
             <version>${project.parent.version} </version>
         </dependency>
+        <dependency>
+            <groupId>net.chrisrichardson.eventstore.examples</groupId>
+            <artifactId>common-web</artifactId>
+            <version>${project.parent.version} </version>
+        </dependency>
 
         <dependency>
             <groupId>com.github.fge</groupId>
@@ -48,6 +53,28 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes/schemas</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../../schemas</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
