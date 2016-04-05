@@ -62,8 +62,8 @@ public class GatewayController {
         URLRequestTransformer urlRequestTransformer = new URLRequestTransformer(apiGatewayProperties);
         ContentRequestTransformer contentRequestTransformer = new ContentRequestTransformer();
         HeadersRequestTransformer headersRequestTransformer = new HeadersRequestTransformer();
-        headersRequestTransformer.setPredcessor(contentRequestTransformer);
-        contentRequestTransformer.setPredcessor(urlRequestTransformer);
+        headersRequestTransformer.setPredecessor(contentRequestTransformer);
+        contentRequestTransformer.setPredecessor(urlRequestTransformer);
 
         return headersRequestTransformer.transform(request).build();
     }

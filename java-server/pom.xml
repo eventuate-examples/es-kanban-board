@@ -14,11 +14,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <eventStoreClientVersion>0.12</eventStoreClientVersion>
-        <springBootVersion>1.2.5.RELEASE</springBootVersion>
+        <springBootVersion>1.2.8.RELEASE</springBootVersion>
         <springVersion>4.1.9.RELEASE</springVersion>
     </properties>
 
     <modules>
+        <module>api-gateway-service</module>
         <module>test-utils</module>
         <module>common</module>
         <module>common-auth</module>
@@ -32,6 +33,7 @@
         <module>board-command-side-service</module>
         <module>board-query-side</module>
         <module>board-query-side-service</module>
+        <module>e2e-test</module>
         <module>rest-api-integration-tests</module>
         <module>standalone-service</module>
         <module>task-command-side</module>
@@ -168,7 +170,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.2.5.RELEASE</version>
+                <version>1.2.8.RELEASE</version>
             </plugin>
         </plugins>
     </build>

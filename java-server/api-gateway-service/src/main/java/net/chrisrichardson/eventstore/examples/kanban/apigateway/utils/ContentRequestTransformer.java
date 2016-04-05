@@ -17,7 +17,7 @@ public class ContentRequestTransformer extends ProxyRequestTransformer {
 
     @Override
     public RequestBuilder transform(HttpServletRequest request) throws NoSuchRequestHandlingMethodException, URISyntaxException, IOException {
-        RequestBuilder requestBuilder = predcessor.transform(request);
+        RequestBuilder requestBuilder = predecessor.transform(request);
 
         String requestContent = request.getReader().lines().collect(Collectors.joining(""));
         if(!requestContent.isEmpty()) {
