@@ -28,7 +28,7 @@ export DOCKER_PORT=8080
 
 cd ..
 
-./gradlew $* clean build -xe2e-test:test
+./gradlew $* build -xe2e-test:test
 
 cd ./docker-microservices
 
@@ -46,7 +46,7 @@ set -e
 
 cd ..
 
-./gradlew $* :e2e-test:cleanTest :e2e-test:test
+./gradlew -P ignoreE2EFailures=false $* :e2e-test:cleanTest :e2e-test:test
 
 cd ./docker-microservices
 
