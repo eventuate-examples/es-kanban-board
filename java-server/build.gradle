@@ -28,6 +28,6 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven { url "http://mavenrepo.eventuate.io/release" }
+        eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
     }
 }

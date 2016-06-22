@@ -92,3 +92,8 @@ cidfile
 nodejs-server/dist
 build
 java-server/standalone-service/src/main/resources/static/
+.classpath
+.project
+.settings
+target
+.DS_Store

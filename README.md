@@ -90,6 +90,7 @@ docker-compose up -d mongodb
 
 # Building the application
 
+This application is written using Java 8.
 Before building and/or running application, you must set an environment variable that tells the application how to connect to MongoDB:
 
 ```
