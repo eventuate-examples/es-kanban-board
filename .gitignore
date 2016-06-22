@@ -97,3 +97,4 @@ java-server/standalone-service/src/main/resources/static/
 .settings
 target
 .DS_Store
+target

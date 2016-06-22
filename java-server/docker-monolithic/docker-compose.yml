@@ -1,5 +1,5 @@
 kanbanservice:
-  image: java:8
+  image: java:openjdk-8u91-jdk
   working_dir: /app
   volumes:
     - ../standalone-service/build/libs:/app
