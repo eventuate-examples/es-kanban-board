@@ -1,22 +1,17 @@
 package net.chrisrichardson.eventstore.examples.kanban.queryside.task;
 
-import net.chrisrichardson.eventstore.Event;
+import io.eventuate.DispatchedEvent;
+import io.eventuate.Event;
+import io.eventuate.EventHandlerMethod;
+import io.eventuate.EventSubscriber;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskInfo;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskStatus;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.event.*;
-import net.chrisrichardson.eventstore.subscriptions.CompoundEventHandler;
-import net.chrisrichardson.eventstore.subscriptions.DispatchedEvent;
-import net.chrisrichardson.eventstore.subscriptions.EventHandlerMethod;
-import net.chrisrichardson.eventstore.subscriptions.EventSubscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rx.Observable;
 
-/**
- * Created by popikyardo on 15.10.15.
- */
 @EventSubscriber(id = "taskEventHandlers")
-public class TaskQueryWorkflow implements CompoundEventHandler {
+public class TaskQueryWorkflow {
 
     private TaskUpdateService taskUpdateService;
 
@@ -27,72 +22,64 @@ public class TaskQueryWorkflow implements CompoundEventHandler {
     private static Logger log = LoggerFactory.getLogger(TaskQueryWorkflow.class);
 
     @EventHandlerMethod
-    public Observable<Object> create(DispatchedEvent<TaskCreatedEvent> de) {
-        String id = de.getEntityIdentifier().getId();
+    public void create(DispatchedEvent<TaskCreatedEvent> de) {
+        String id = de.getEntityId();
 
-        taskUpdateService.create(id, de.event().getTaskInfo());
-
-        return Observable.just(null);
+        taskUpdateService.create(id, de.getEvent().getTaskInfo());
     }
 
     @EventHandlerMethod
-    public Observable<Object> update(DispatchedEvent<TaskUpdatedEvent> de) {
-        log.info("TaskQueryWorkflow got event : {}", de.event());
+    public void update(DispatchedEvent<TaskUpdatedEvent> de) {
+        log.info("TaskQueryWorkflow got event : {}", de.getEvent());
         TaskInfo taskInfo = new TaskInfo();
-        taskInfo.setTaskDetails(de.event().getTaskDetails());
-        taskInfo.setUpdate(de.event().getUpdate());
+        taskInfo.setTaskDetails(de.getEvent().getTaskDetails());
+        taskInfo.setUpdate(de.getEvent().getUpdate());
 
-        taskUpdateService.update(de.entityId().id(), taskInfo);
-
-        return Observable.just(null);
+        taskUpdateService.update(de.getEntityId(), taskInfo);
     }
 
     @EventHandlerMethod
-    public Observable<Object> complete(DispatchedEvent<TaskCompletedEvent> de) {
-        return processChangeStatusEvent(de, TaskStatus.completed);
+    public void complete(DispatchedEvent<TaskCompletedEvent> de) {
+        processChangeStatusEvent(de, TaskStatus.completed);
     }
 
     @EventHandlerMethod
-    public Observable<Object> delete(DispatchedEvent<TaskDeletedEvent> de) {
-        log.info("TaskQueryWorkflow got event : {}", de.event());
-        taskUpdateService.delete(de.getEntityIdentifier().getId());
-
-        return Observable.just(null);
+    public void delete(DispatchedEvent<TaskDeletedEvent> de) {
+        log.info("TaskQueryWorkflow got event : {}", de.getEvent());
+        taskUpdateService.delete(de.getEntityId());
     }
 
     @EventHandlerMethod
-    public Observable<Object> schedule(DispatchedEvent<TaskScheduledEvent> de) {
-        return processChangeStatusEvent(de, TaskStatus.scheduled);
+    public void schedule(DispatchedEvent<TaskScheduledEvent> de) {
+        processChangeStatusEvent(de, TaskStatus.scheduled);
     }
 
     @EventHandlerMethod
-    public Observable<Object> backlog(DispatchedEvent<TaskBacklogEvent> de) {
+    public void backlog(DispatchedEvent<TaskBacklogEvent> de) {
         TaskInfo taskInfo = new TaskInfo();
-        taskInfo.setUpdate(de.event().getUpdate());
+        taskInfo.setUpdate(de.getEvent().getUpdate());
         taskInfo.setStatus(TaskStatus.backlog);
 
-        return updateAndSendEvent(de, taskInfo);
+        updateAndSendEvent(de, taskInfo);
     }
 
     @EventHandlerMethod
-    public Observable<Object> start(DispatchedEvent<TaskStartedEvent> de) {
-        return processChangeStatusEvent(de, TaskStatus.started);
+    public void start(DispatchedEvent<TaskStartedEvent> de) {
+        processChangeStatusEvent(de, TaskStatus.started);
     }
 
-    private Observable<Object> processChangeStatusEvent(DispatchedEvent<? extends DetailedTaskEvent> de, TaskStatus taskStatus) {
+    private void processChangeStatusEvent(DispatchedEvent<? extends DetailedTaskEvent> de, TaskStatus taskStatus) {
 
         TaskInfo taskInfo = new TaskInfo();
-        taskInfo.setBoardId(de.event().getBoardId());
-        taskInfo.setUpdate(de.event().getUpdate());
+        taskInfo.setBoardId(de.getEvent().getBoardId());
+        taskInfo.setUpdate(de.getEvent().getUpdate());
         taskInfo.setStatus(taskStatus);
 
-        return updateAndSendEvent((DispatchedEvent<? extends Event>) de, taskInfo);
+        updateAndSendEvent((DispatchedEvent<? extends Event>) de, taskInfo);
     }
 
-    private Observable<Object> updateAndSendEvent(DispatchedEvent<? extends Event> de, TaskInfo taskInfo) {
-        log.info("TaskQueryWorkflow got event : {}", de.event());
-        taskUpdateService.update(de.entityId().id(), taskInfo);
-
-        return Observable.just(null);
+    private void updateAndSendEvent(DispatchedEvent<? extends Event> de, TaskInfo taskInfo) {
+        log.info("TaskQueryWorkflow got event : {}", de.getEvent());
+        taskUpdateService.update(de.getEntityId(), taskInfo);
     }
 }

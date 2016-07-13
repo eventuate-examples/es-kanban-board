@@ -5,9 +5,6 @@ import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskDetails;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.event.TaskEvent;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class TaskUpdatedEvent extends TaskEvent {
     private TaskDetails taskDetails;
     private AuditEntry update;

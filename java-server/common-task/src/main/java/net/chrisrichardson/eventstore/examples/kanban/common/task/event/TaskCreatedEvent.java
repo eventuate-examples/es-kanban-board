@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskInfo;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class TaskCreatedEvent extends TaskEvent {
     @JsonUnwrapped
     private TaskInfo taskInfo;

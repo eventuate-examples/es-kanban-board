@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.commandside.task;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskInfo;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 15.10.15.
- */
 public class CreateTaskCommand implements TaskCommand {
     private TaskInfo taskInfo;
 

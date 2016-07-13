@@ -2,9 +2,6 @@ package net.chrisrichardson.eventstore.examples.kanban.common.board.model;
 
 import java.util.Date;
 
-/**
- * Created by popikyardo on 14.10.15.
- */
 public class BoardResponse {
     private String id;
     private String title;

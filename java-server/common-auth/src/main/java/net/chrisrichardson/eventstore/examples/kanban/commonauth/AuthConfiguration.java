@@ -18,9 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.security.SecureRandom;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 @Configuration
 @ComponentScan("net.chrisrichardson.eventstore.examples.kanban.commonauth")
 @EnableWebSecurity

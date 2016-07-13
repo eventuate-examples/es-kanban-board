@@ -2,9 +2,6 @@ package net.chrisrichardson.eventstore.examples.kanban.common.task.model;
 
 import java.util.List;
 
-/**
- * Created by popikyardo on 21.12.15.
- */
 public class HistoryResponse {
 
     private List<HistoryEvent> data;

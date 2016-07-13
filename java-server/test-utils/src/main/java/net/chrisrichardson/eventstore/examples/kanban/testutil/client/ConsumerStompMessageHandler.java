@@ -9,9 +9,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * Created by popikyardo on 23.12.15.
- */
 public class ConsumerStompMessageHandler implements StompMessageHandler {
 
     private final int expectedMessageCount;

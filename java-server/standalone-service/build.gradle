@@ -11,8 +11,8 @@ dependencies {
     compile project(":common-websocket")
     compile project(":common-swagger")
 
-    compile "net.chrisrichardson.eventstore.client:eventstore-java-client_2.10:$eventStoreClientVersion"
-    compile "net.chrisrichardson.eventstore.client:eventstore-http-stomp-client_2.10:$eventStoreClientVersion"
+    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
+    compile "io.eventuate.client.java:eventuate-client-java-http-stomp-spring:$eventuateClientVersion"
 
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
@@ -26,8 +26,8 @@ test {
 }
 
 task copyAngularJS(type: Copy) {
-  from "../../prebuilt-angularjs-client"
-  into "build/resources/main/static"
+    from "../../prebuilt-angularjs-client"
+    into "build/resources/main/static"
 }
 
 jar.dependsOn(copyAngularJS)

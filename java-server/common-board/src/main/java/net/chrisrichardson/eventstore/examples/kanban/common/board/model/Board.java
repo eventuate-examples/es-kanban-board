@@ -7,9 +7,6 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
-/**
- * Created by popikyardo on 07.10.15.
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Board {
     @Id

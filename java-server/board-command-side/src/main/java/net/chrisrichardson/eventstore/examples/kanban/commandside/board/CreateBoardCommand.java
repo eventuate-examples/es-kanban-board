@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.commandside.board;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.BoardInfo;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class CreateBoardCommand implements BoardCommand {
     private BoardInfo boardInfo;
 

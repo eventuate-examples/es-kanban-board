@@ -9,9 +9,6 @@ import rx.functions.Func1;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
-/**
- * Created by popikyardo on 30.09.15.
- */
 public class TestUtil {
 
     public static <T> T awaitPredicatePasses(Func1<Long, T> func, Func1<T, Boolean> predicate) {

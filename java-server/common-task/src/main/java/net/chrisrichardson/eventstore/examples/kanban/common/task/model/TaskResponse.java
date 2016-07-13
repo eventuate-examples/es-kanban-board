@@ -6,9 +6,6 @@ import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskStatus;
 
 import java.util.Date;
 
-/**
- * Created by popikyardo on 15.10.15.
- */
 public class TaskResponse {
 
     private String id;

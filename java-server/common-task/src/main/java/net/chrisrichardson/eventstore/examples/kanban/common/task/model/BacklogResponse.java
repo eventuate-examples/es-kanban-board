@@ -2,9 +2,6 @@ package net.chrisrichardson.eventstore.examples.kanban.common.task.model;
 
 import java.util.List;
 
-/**
- * Created by popikyardo on 23.10.15.
- */
 public class BacklogResponse {
 
     private List<Task> tasks;

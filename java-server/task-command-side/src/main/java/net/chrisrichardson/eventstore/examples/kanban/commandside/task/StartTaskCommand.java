@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.commandside.task;
 import net.chrisrichardson.eventstore.examples.kanban.common.model.AuditEntry;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by Main on 17.10.2015.
- */
 public class StartTaskCommand implements TaskCommand {
     private String boardId;
     private AuditEntry update;

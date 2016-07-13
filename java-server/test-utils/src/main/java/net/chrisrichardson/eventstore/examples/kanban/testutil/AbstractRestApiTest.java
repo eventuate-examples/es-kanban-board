@@ -23,9 +23,6 @@ import java.io.IOException;
 import static net.chrisrichardson.eventstore.examples.kanban.testutil.util.TestUtil.awaitPredicatePasses;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by popikyardo on 07.01.16.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @IntegrationTest({"server.port=0"})
 public abstract class AbstractRestApiTest extends BaseTest {

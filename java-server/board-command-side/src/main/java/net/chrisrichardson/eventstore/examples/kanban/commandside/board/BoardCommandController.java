@@ -1,6 +1,6 @@
 package net.chrisrichardson.eventstore.examples.kanban.commandside.board;
 
-import net.chrisrichardson.eventstore.EntityWithIdAndVersion;
+import io.eventuate.EntityWithIdAndVersion;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.BoardInfo;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.model.BoardResponse;
 import org.slf4j.Logger;
@@ -9,13 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rx.Observable;
+
+import java.util.concurrent.CompletableFuture;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-/**
- * Created by Main on 02.10.2015.
- */
 @RestController
 @RequestMapping(value = "/api")
 public class BoardCommandController {
@@ -26,16 +24,16 @@ public class BoardCommandController {
     private static Logger log = LoggerFactory.getLogger(BoardCommandController.class);
 
     @RequestMapping(value = "/boards", method = POST)
-    public Observable<BoardResponse> saveBoard(@RequestBody BoardInfo board) {
-        return boardService.save(board).map(this::makeBoardResponse);
+    public CompletableFuture<BoardResponse> saveBoard(@RequestBody BoardInfo board) {
+        return boardService.save(board).thenApply(this::makeBoardResponse);
     }
 
     private BoardResponse makeBoardResponse(EntityWithIdAndVersion<BoardAggregate> e) {
-        return new BoardResponse(e.getEntityIdentifier().getId(),
-                e.entity().getBoard().getTitle(),
-                e.entity().getBoard().getCreation().getWho(),
-                e.entity().getBoard().getCreation().getWhen(),
-                e.entity().getBoard().getUpdate().getWho(),
-                e.entity().getBoard().getUpdate().getWhen());
+        return new BoardResponse(e.getEntityId(),
+                e.getAggregate().getBoard().getTitle(),
+                e.getAggregate().getBoard().getCreation().getWho(),
+                e.getAggregate().getBoard().getCreation().getWhen(),
+                e.getAggregate().getBoard().getUpdate().getWho(),
+                e.getAggregate().getBoard().getUpdate().getWhen());
     }
 }

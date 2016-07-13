@@ -1,26 +1,25 @@
 package net.chrisrichardson.eventstore.examples.kanban.commandside.board;
 
-import net.chrisrichardson.eventstore.EventStore;
-import net.chrisrichardson.eventstore.repository.AggregateRepository;
-import net.chrisrichardson.eventstore.subscriptions.config.EventStoreSubscriptionsConfiguration;
+import io.eventuate.AggregateRepository;
+import io.eventuate.EventuateAggregateStore;
+import io.eventuate.javaclient.spring.EnableEventHandlers;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 @Configuration
-@Import({EventStoreSubscriptionsConfiguration.class})
+@EnableEventHandlers
 @EnableAutoConfiguration(exclude = {MongoRepositoriesAutoConfiguration.class})
 @ComponentScan
 public class BoardCommandSideConfiguration {
 
     @Bean
-    public AggregateRepository<BoardAggregate, BoardCommand> boardAggregateRepository(EventStore eventStore) {
+    public AggregateRepository<BoardAggregate, BoardCommand> boardAggregateRepository(EventuateAggregateStore eventStore) {
         return new AggregateRepository<>(BoardAggregate.class, eventStore);
     }
 
@@ -36,5 +35,3 @@ public class BoardCommandSideConfiguration {
     }
 
 }
-
-

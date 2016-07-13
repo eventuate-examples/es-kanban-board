@@ -2,9 +2,6 @@ package net.chrisrichardson.eventstore.examples.kanban.testutil.model;
 
 import java.util.List;
 
-/**
- * Created by popikyardo on 21.12.15.
- */
 public class TestHistoryResponse {
 
     private List<TestHistoryEvent> data;

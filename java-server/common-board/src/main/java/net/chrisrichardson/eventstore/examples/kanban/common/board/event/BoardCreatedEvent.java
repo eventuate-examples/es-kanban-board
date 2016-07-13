@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.BoardInfo;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class BoardCreatedEvent extends BoardEvent {
     @JsonUnwrapped
     private BoardInfo boardInfo;

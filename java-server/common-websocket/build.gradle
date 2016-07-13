@@ -3,7 +3,7 @@ apply plugin: 'java'
 dependencies {
     compile project(":common-board")
     compile project(":common-task")
-    compile "net.chrisrichardson.eventstore.client:eventstore-java-client_2.10:$eventStoreClientVersion"
+    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
 
     compile "org.springframework.security:spring-security-config:4.0.2.RELEASE"

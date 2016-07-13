@@ -6,9 +6,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.util.Date;
 
-/**
- * Created by popikyardo on 11.01.16.
- */
 public class AuditEntry {
 
     private String who;

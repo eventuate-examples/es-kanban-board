@@ -4,9 +4,6 @@ import net.chrisrichardson.eventstore.examples.kanban.common.model.AuditEntry;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskDetails;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 15.10.15.
- */
 public class UpdateTaskCommand implements TaskCommand {
     private TaskDetails taskDetails;
     private AuditEntry update;

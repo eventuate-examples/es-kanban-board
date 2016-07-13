@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.model;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by popikyardo on 20.10.15.
- */
 public class KanbanWebSocketEvent {
 
     private String eventId;

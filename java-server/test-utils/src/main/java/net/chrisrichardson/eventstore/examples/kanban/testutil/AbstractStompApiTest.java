@@ -25,11 +25,6 @@ import java.io.IOException;
 
 import static net.chrisrichardson.eventstore.examples.kanban.testutil.util.TestUtil.awaitPredicatePasses;
 
-
-/**
- * Created by Main on 06.10.2015.
- */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @IntegrationTest({"server.port=0"})
 public abstract class AbstractStompApiTest extends BaseTest {
