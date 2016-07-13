@@ -26,8 +26,8 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.chrisrichardson.eventstore.client</groupId>
-            <artifactId>eventstore-jdbc_2.10</artifactId>
+            <groupId>io.eventuate.client.java</groupId>
+            <artifactId>eventuate-client-java-jdbc</artifactId>
         </dependency>
     </dependencies>
 

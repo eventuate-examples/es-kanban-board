@@ -43,12 +43,12 @@
         </dependency>
 
         <dependency>
-            <groupId>net.chrisrichardson.eventstore.client</groupId>
-            <artifactId>eventstore-http-stomp-client_2.10</artifactId>
+            <groupId>io.eventuate.client.java</groupId>
+            <artifactId>eventuate-client-java-http-stomp-spring</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.chrisrichardson.eventstore.client</groupId>
-            <artifactId>eventstore-java-client_2.10</artifactId>
+            <groupId>io.eventuate.client.java</groupId>
+            <artifactId>eventuate-client-java-spring</artifactId>
         </dependency>
     </dependencies>
 
