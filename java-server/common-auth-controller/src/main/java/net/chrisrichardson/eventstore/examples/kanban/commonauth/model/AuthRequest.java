@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.commonauth.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- * Created by popikyardo on 19.10.15.
- */
 public class AuthRequest {
 
     @NotBlank

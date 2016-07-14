@@ -3,10 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.common.task;
 import net.chrisrichardson.eventstore.examples.kanban.common.model.AuditEntry;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class TaskInfo {
     private String boardId;
     private TaskDetails taskDetails;

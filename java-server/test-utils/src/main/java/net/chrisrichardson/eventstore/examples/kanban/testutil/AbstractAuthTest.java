@@ -19,9 +19,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
-/**
- * Created by popikyardo on 23.09.15.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @IntegrationTest({"server.port=0"})
 public abstract class AbstractAuthTest {

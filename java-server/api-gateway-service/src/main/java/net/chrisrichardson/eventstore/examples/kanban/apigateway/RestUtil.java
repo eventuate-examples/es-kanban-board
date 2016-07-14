@@ -2,9 +2,6 @@ package net.chrisrichardson.eventstore.examples.kanban.apigateway;
 
 import org.springframework.http.HttpStatus;
 
-/**
- * Created by popikyardo on 07.12.15.
- */
 public class RestUtil {
 
     public static boolean isError(HttpStatus status) {

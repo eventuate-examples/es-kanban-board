@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
-/**
- * Created by popikyardo on 07.12.15.
- */
 @ControllerAdvice
 public class HttpExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(HttpExceptionHandler.class);

@@ -33,8 +33,8 @@
         </dependency>
 
         <dependency>
-            <groupId>net.chrisrichardson.eventstore.client</groupId>
-            <artifactId>eventstore-http-stomp-client_2.10</artifactId>
+            <groupId>io.eventuate.client.java</groupId>
+            <artifactId>eventuate-client-java-http-stomp-spring</artifactId>
         </dependency>
 
     </dependencies>

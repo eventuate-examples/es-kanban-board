@@ -1,8 +1,8 @@
 package net.chrisrichardson.eventstore.examples.kanban.commandside.board;
 
-import net.chrisrichardson.eventstore.Event;
-import net.chrisrichardson.eventstore.EventUtil;
-import net.chrisrichardson.eventstore.ReflectiveMutableCommandProcessingAggregate;
+import io.eventuate.Event;
+import io.eventuate.EventUtil;
+import io.eventuate.ReflectiveMutableCommandProcessingAggregate;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.event.BoardCreatedEvent;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.BoardInfo;
 import org.slf4j.Logger;
@@ -10,9 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class BoardAggregate extends ReflectiveMutableCommandProcessingAggregate<BoardAggregate, BoardCommand> {
 
     private BoardInfo board;

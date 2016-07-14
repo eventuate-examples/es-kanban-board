@@ -19,9 +19,6 @@ import java.io.IOException;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 @RestController
 @Validated
 public class AuthController {

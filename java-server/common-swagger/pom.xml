@@ -12,8 +12,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.chrisrichardson.eventstore.client</groupId>
-            <artifactId>eventstore-java-client_2.10</artifactId>
+            <groupId>io.eventuate.client.java</groupId>
+            <artifactId>eventuate-client-java-spring</artifactId>
         </dependency>
 
         <dependency>

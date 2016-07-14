@@ -1,8 +1,5 @@
 package net.chrisrichardson.eventstore.examples.kanban.common.board.model;
 
-/**
- * Created by popikyardo on 23.10.15.
- */
 public class BoardQueryResponse {
 
     private Board data;

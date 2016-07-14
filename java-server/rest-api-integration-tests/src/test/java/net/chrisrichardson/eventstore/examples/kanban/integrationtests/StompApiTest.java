@@ -11,11 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-
-/**
- * Created by Main on 06.10.2015.
- */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = {RestAPITestConfiguration.class})

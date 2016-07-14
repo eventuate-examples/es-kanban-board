@@ -14,9 +14,6 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-/**
- * Created by popikyardo on 19/09/2015.
- */
 @RestController
 public class BoardQueryController {
 

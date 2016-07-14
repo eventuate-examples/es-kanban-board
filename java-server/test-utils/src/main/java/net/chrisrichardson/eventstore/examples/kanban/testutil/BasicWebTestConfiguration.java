@@ -21,9 +21,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
-/**
- * Created by popikyardo on 23.09.15.
- */
 @Configuration
 @EnableWebSecurity
 @Import({WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})

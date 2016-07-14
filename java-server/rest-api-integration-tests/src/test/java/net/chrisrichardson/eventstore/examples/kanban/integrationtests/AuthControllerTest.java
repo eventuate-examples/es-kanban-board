@@ -5,9 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-/**
- * Created by popikyardo on 23.09.15.
- */
 @SpringApplicationConfiguration(classes = {RestAPITestConfiguration.class})
 @WebAppConfiguration
 public class AuthControllerTest extends AbstractAuthTest {

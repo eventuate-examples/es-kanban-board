@@ -8,9 +8,6 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
-/**
- * Created by popikyardo on 15.10.15.
- */
 public class Task {
     @Id
     private String id;

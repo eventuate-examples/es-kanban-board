@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.common.board;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import net.chrisrichardson.eventstore.examples.kanban.common.model.AuditEntry;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class BoardInfo {
     private String title;
     private AuditEntry creation;

@@ -1,6 +1,6 @@
 package net.chrisrichardson.eventstore.examples.kanban.taskcommandsideservice;
 
-import net.chrisrichardson.eventstore.client.config.EventStoreHttpClientConfiguration;
+import io.eventuate.javaclient.spring.httpstomp.EventuateHttpStompClientConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonweb.WebConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commandside.task.TaskCommandSideConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthConfiguration;
@@ -10,11 +10,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-/**
- * Created by Main on 19.01.2016.
- */
+
 @Configuration
-@Import({TaskCommandSideConfiguration.class, EventStoreHttpClientConfiguration.class, WebConfiguration.class, AuthConfiguration.class, CommonSwaggerConfiguration.class})
+@Import({TaskCommandSideConfiguration.class, EventuateHttpStompClientConfiguration.class, WebConfiguration.class, AuthConfiguration.class, CommonSwaggerConfiguration.class})
 @EnableAutoConfiguration
 @ComponentScan
 public class TaskCommandSideServiceConfiguration {
