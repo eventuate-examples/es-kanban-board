@@ -45,9 +45,6 @@ import static net.chrisrichardson.eventstore.examples.kanban.testutil.util.TestU
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by popikyardo on 07.01.16.
- */
 public abstract class BaseTest {
 
     protected int port;

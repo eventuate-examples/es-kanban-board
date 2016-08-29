@@ -1,6 +1,6 @@
 package net.chrisrichardson.eventstore.examples.kanban.standalone;
 
-import net.chrisrichardson.eventstore.client.config.EventStoreHttpClientConfiguration;
+import io.eventuate.javaclient.spring.httpstomp.EventuateHttpStompClientConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commandside.board.BoardCommandSideConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commandside.task.TaskCommandSideConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthConfiguration;
@@ -17,11 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-/**
- * Created by Main on 06.10.2015.
- */
 @Configuration
-@Import({EventStoreHttpClientConfiguration.class, WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class, BoardQuerySideConfiguration.class, TaskQuerySideConfiguration.class, BoardCommandSideConfiguration.class, TaskCommandSideConfiguration.class, CommonSwaggerConfiguration.class})
+@Import({EventuateHttpStompClientConfiguration.class, WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class, BoardQuerySideConfiguration.class, TaskQuerySideConfiguration.class, BoardCommandSideConfiguration.class, TaskCommandSideConfiguration.class, CommonSwaggerConfiguration.class})
 @ComponentScan
 public class StandaloneServiceConfiguration {
     @Bean

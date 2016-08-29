@@ -1,19 +1,14 @@
 package net.chrisrichardson.eventstore.examples.kanban.queryside.board;
 
+import io.eventuate.DispatchedEvent;
+import io.eventuate.EventHandlerMethod;
+import io.eventuate.EventSubscriber;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.event.BoardCreatedEvent;
-import net.chrisrichardson.eventstore.subscriptions.CompoundEventHandler;
-import net.chrisrichardson.eventstore.subscriptions.DispatchedEvent;
-import net.chrisrichardson.eventstore.subscriptions.EventHandlerMethod;
-import net.chrisrichardson.eventstore.subscriptions.EventSubscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rx.Observable;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 @EventSubscriber(id = "boardEventHandlers")
-public class BoardQueryWorkflow implements CompoundEventHandler {
+public class BoardQueryWorkflow{
 
     private BoardUpdateService boardUpdateService;
     private static Logger log = LoggerFactory.getLogger(BoardQueryWorkflow.class);
@@ -23,13 +18,11 @@ public class BoardQueryWorkflow implements CompoundEventHandler {
     }
 
     @EventHandlerMethod
-    public Observable<Object> create(DispatchedEvent<BoardCreatedEvent> de) {
-        BoardCreatedEvent event = de.event();
-        String id = de.getEntityIdentifier().getId();
+    public void create(DispatchedEvent<BoardCreatedEvent> de) {
+        BoardCreatedEvent event = de.getEvent();
+        String id = de.getEntityId();
 
-        log.info("BoardQueryWorkflow got event : {}", de.event());
+        log.info("BoardQueryWorkflow got event : {}", de.getEvent());
         boardUpdateService.create(id, event.getBoardInfo());
-
-        return Observable.just(null);
     }
 }

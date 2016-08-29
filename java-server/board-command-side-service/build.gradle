@@ -9,6 +9,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 
-    compile "net.chrisrichardson.eventstore.client:eventstore-http-stomp-client_2.10:$eventStoreClientVersion"
+    compile "io.eventuate.client.java:eventuate-client-java-http-stomp-spring:$eventuateClientVersion"
     testCompile "junit:junit:4.11"
 }

@@ -13,9 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * Created by popikyardo on 26.01.16.
- */
 public class ValidationUtils {
 
     public static final String JSON_V4_SCHEMA_IDENTIFIER = "http://json-schema.org/draft-04/schema#";

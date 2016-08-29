@@ -27,9 +27,6 @@ import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-/**
- * Created by popikyardo on 15.01.16.
- */
 @RestController
 @RequestMapping("/api")
 public class GatewayController {

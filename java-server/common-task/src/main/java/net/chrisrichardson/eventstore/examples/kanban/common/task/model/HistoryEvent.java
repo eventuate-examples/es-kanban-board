@@ -1,11 +1,8 @@
 package net.chrisrichardson.eventstore.examples.kanban.common.task.model;
 
 
-import net.chrisrichardson.eventstore.Event;
+import io.eventuate.Event;
 
-/**
- * Created by popikyardo on 05.11.15.
- */
 public class HistoryEvent {
     private String id;
     private String eventType;

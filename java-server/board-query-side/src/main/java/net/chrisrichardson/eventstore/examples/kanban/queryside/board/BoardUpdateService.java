@@ -3,9 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.queryside.board;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.BoardInfo;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.model.Board;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
 public class BoardUpdateService {
     private BoardRepository boardRepository;
 

@@ -1,13 +1,8 @@
 package net.chrisrichardson.eventstore.examples.kanban.testutil.model;
 
-
-import net.chrisrichardson.eventstore.Event;
-
 import java.util.Map;
 
-/**
- * Created by popikyardo on 05.11.15.
- */
+
 public class TestHistoryEvent {
     private String id;
     private String eventType;

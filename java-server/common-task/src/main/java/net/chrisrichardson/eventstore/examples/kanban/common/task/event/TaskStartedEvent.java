@@ -5,9 +5,6 @@ import net.chrisrichardson.eventstore.examples.kanban.common.task.event.Detailed
 import net.chrisrichardson.eventstore.examples.kanban.common.task.event.TaskEvent;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-/**
- * Created by Main on 17.10.2015.
- */
 public class TaskStartedEvent extends TaskEvent implements DetailedTaskEvent {
     private String boardId;
     private AuditEntry update;

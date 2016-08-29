@@ -1,15 +1,13 @@
 package net.chrisrichardson.eventstore.examples.kanban.commandside.board;
 
-import net.chrisrichardson.eventstore.EntityWithIdAndVersion;
+import io.eventuate.AggregateRepository;
+import io.eventuate.EntityWithIdAndVersion;
 import net.chrisrichardson.eventstore.examples.kanban.common.board.BoardInfo;
-import net.chrisrichardson.eventstore.repository.AggregateRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rx.Observable;
 
-/**
- * Created by popikyardo on 21.09.15.
- */
+import java.util.concurrent.CompletableFuture;
+
 public class BoardService {
 
     private final AggregateRepository<BoardAggregate, BoardCommand> aggregateRepository;
@@ -20,7 +18,7 @@ public class BoardService {
         this.aggregateRepository = aggregateRepository;
     }
 
-    public Observable<EntityWithIdAndVersion<BoardAggregate>> save(BoardInfo board) {
+    public CompletableFuture<EntityWithIdAndVersion<BoardAggregate>> save(BoardInfo board) {
         log.info("BoardService saving : {}", board);
 
         return aggregateRepository.save(new CreateBoardCommand(board));

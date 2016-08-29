@@ -1,7 +1,7 @@
 package net.chrisrichardson.eventstore.examples.kanban.apigateway;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.chrisrichardson.eventstore.client.config.EventStoreHttpClientConfiguration;
+import io.eventuate.javaclient.spring.httpstomp.EventuateHttpStompClientConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonweb.WebConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketConfig;
@@ -9,7 +9,6 @@ import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketS
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebsocketEventsTranslator;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -25,12 +24,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
-/**
- * Created by popikyardo on 15.01.16.
- */
 @Configuration
 @ComponentScan
-@Import({EventStoreHttpClientConfiguration.class, WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
+@Import({EventuateHttpStompClientConfiguration.class, WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
 @EnableConfigurationProperties({ApiGatewayProperties.class})
 public class ApiGatewayServiceConfiguration {
 

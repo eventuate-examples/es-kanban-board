@@ -1,22 +1,18 @@
 package net.chrisrichardson.eventstore.examples.kanban.commandside.task;
 
-import net.chrisrichardson.eventstore.EntityIdentifier;
-import net.chrisrichardson.eventstore.EntityWithMetadata;
-import net.chrisrichardson.eventstore.EventStore;
-import rx.Observable;
+import io.eventuate.EntityWithMetadata;
+import io.eventuate.EventuateAggregateStore;
+import java.util.concurrent.CompletableFuture;
 
-/**
- * Created by popikyardo on 03.11.15.
- */
 public class TaskHistoryService {
 
-    private EventStore eventStore;
+    private EventuateAggregateStore eventStore;
 
-    public TaskHistoryService(EventStore eventStore) {
+    public TaskHistoryService(EventuateAggregateStore eventStore) {
         this.eventStore = eventStore;
     }
 
-    public Observable<EntityWithMetadata<TaskAggregate>> getHistoryEvents(String taskId) {
-        return eventStore.find(TaskAggregate.class, new EntityIdentifier(taskId));
+    public CompletableFuture<EntityWithMetadata<TaskAggregate>> getHistoryEvents(String taskId) {
+        return eventStore.find(TaskAggregate.class, taskId);
     }
 }
