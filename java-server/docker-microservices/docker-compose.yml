@@ -1,82 +1,61 @@
 apigateway:
-  image: java:openjdk-8u91-jdk
-  working_dir: /app
+  extends:
+    file: docker-compose-common.yml
+    service: apigateway
   volumes:
     - ../api-gateway-service/build/libs:/app
-  command: java -jar /app/api-gateway-service.jar
-  ports:
-    - "8080:8080"
   links:
     - boardcommandside
     - taskcommandside
     - boardqueryside
     - taskqueryside
-  environment:
-    EVENTUATE_API_KEY_ID:
-    EVENTUATE_API_KEY_SECRET:
-    BOARD_COMMANDSIDE_SERVICE_URL: http://boardcommandside:8080
-    BOARD_QUERYSIDE_SERVICE_URL: http://boardqueryside:8080
-    TASK_COMMANDSIDE_SERVICE_URL: http://taskcommandside:8080
-    TASK_QUERYSIDE_SERVICE_URL: http://taskqueryside:8080
 
 
 boardcommandside:
-  image: java:openjdk-8u91-jdk
-  working_dir: /app
+  extends:
+    file: docker-compose-common.yml
+    service: boardcommandside
   volumes:
     - ../board-command-side-service/build/libs:/app
-  command: java -jar /app/board-command-side-service.jar
-  ports:
-    - "8081:8080"
   environment:
-    EVENTUATE_API_KEY_ID:
-    EVENTUATE_API_KEY_SECRET:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
 
 taskcommandside:
-  image: java:openjdk-8u91-jdk
-  working_dir: /app
+  extends:
+    file: docker-compose-common.yml
+    service: taskcommandside
   volumes:
     - ../task-command-side-service/build/libs:/app
-  command: java -jar /app/task-command-side-service.jar
-  ports:
-    - "8082:8080"
   environment:
-    EVENTUATE_API_KEY_ID:
-    EVENTUATE_API_KEY_SECRET:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
 
 boardqueryside:
-  image: java:openjdk-8u91-jdk
-  working_dir: /app
+  extends:
+    file: docker-compose-common.yml
+    service: boardqueryside
   volumes:
     - ../board-query-side-service/build/libs:/app
-  command: java -jar /app/board-query-side-service.jar
-  ports:
-    - "8083:8080"
   links:
     - mongodb
   environment:
-    EVENTUATE_API_KEY_ID:
-    EVENTUATE_API_KEY_SECRET:
-    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
 
 taskqueryside:
-  image: java:openjdk-8u91-jdk
-  working_dir: /app
+  extends:
+    file: docker-compose-common.yml
+    service: taskqueryside
   volumes:
     - ../task-query-side-service/build/libs:/app
-  command: java -jar /app/task-query-side-service.jar
-  ports:
-    - "8084:8080"
   links:
     - mongodb
   environment:
-    EVENTUATE_API_KEY_ID:
-    EVENTUATE_API_KEY_SECRET:
-    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
 
 mongodb:
-  image: mongo:3.0.4
-  hostname: mongodb
-  command: mongod --smallfiles
-  ports:
-    - "27017:27017"
+  extends:
+    file: docker-compose-common.yml
+    service: mongodb
