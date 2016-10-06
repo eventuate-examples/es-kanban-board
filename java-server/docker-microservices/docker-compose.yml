@@ -9,7 +9,9 @@ apigateway:
     - taskcommandside
     - boardqueryside
     - taskqueryside
-
+  environment:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
 
 boardcommandside:
   extends:
