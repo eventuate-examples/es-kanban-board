@@ -78,34 +78,17 @@ There are the following services:
 To run the Kanban Board application you need credentials for the Eventuate platform.
 You can get them by [signing up here](https://signup.eventuate.io/).
 
-# Running MongoDB
-
-In order to run the tests and to run the application you need a MongoDB database.
-The easiest way to run MongoDB is with docker-compose:
-
-```
-cd java-server/docker-microservices
-docker-compose up -d mongodb
-```
-
 # Building the application
 
 This application is written using Java 8.
-Before building and/or running application, you must set an environment variable that tells the application how to connect to MongoDB:
-
-```
-export DOCKER_IP_ADDRESS=$(docker-machine ip default)
-export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_IP_ADDRESS}/mydb
-```
-
 You can then build the application using this Gradle command:
 
 ```
 cd java-server
-./gradlew clean build
+./gradlew assemble
 ```
 
-Note: to use Gradle you just need to have the JDK in your path. You do not need to install Gradle.
+Note: to use Gradle you just need to have JDK 8 in your path. You do not need to install Gradle.
 
 # Running
 
@@ -118,13 +101,15 @@ docker-compose up -d
 
 # Using the Kanban board
 
-Open the url `http://${DOCKER_IP_ADDRESS}:8080`, login and create boards and tasks.
+Open the url `http://${DOCKER_HOST_IP}:8080`, login and create boards and tasks.
+
+Note: DOCKER_HOST_IP is the IP address of the machine running the Docker daemon.
 
 # Using the Swagger UI
 
 The individual services are Swagger "enabled".
 
-Open the url `http://${DOCKER_IP_ADDRESS}:<SERVICE-PORT>/swagger-ui.html`
+Open the url `http://${DOCKER_HOST_IP}:<SERVICE-PORT>/swagger-ui.html`
 
 # Got questions?
 
