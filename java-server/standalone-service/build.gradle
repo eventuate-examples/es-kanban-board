@@ -1,5 +1,7 @@
+apply plugin: VerifyMongoDBConfigurationPlugin
+apply plugin: VerifyEventStoreEnvironmentPlugin
+apply plugin: EventuateDependencyPlugin
 
-apply plugin: 'java'
 apply plugin: 'spring-boot'
 
 dependencies {
@@ -10,9 +12,6 @@ dependencies {
     compile project(":common-auth-controller")
     compile project(":common-websocket")
     compile project(":common-swagger")
-
-    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
-    compile "io.eventuate.client.java:eventuate-client-java-http-stomp-spring:$eventuateClientVersion"
 
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
