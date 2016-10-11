@@ -2,6 +2,22 @@
 
 set -e
 
+if [ -z "$DOCKER_HOST_IP" ] ; then
+  if [ -z "$DOCKER_HOST" ] ; then
+    export DOCKER_HOST_IP=`hostname`
+  else
+    echo using ${DOCKER_HOST?}
+    XX=${DOCKER_HOST%\:*}
+    export DOCKER_HOST_IP=${XX#tcp\:\/\/}
+  fi
+  echo set DOCKER_HOST_IP $DOCKER_HOST_IP
+fi
+
+if [ -z "$SPRING_DATA_MONGODB_URI" ] ; then
+  export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_HOST_IP?}/mydb
+  echo Set SPRING_DATA_MONGODB_URI $SPRING_DATA_MONGODB_URI
+fi
+
 DOCKER_COMPOSE="docker-compose -p kanban-board"
 
 if [ "$1" = "-f" ] ; then
@@ -24,17 +40,8 @@ if [ "$1" = "--no-rm" ] ; then
   shift
 fi
 
+
 ${DOCKER_COMPOSE?} up -d mongodb $EXTRA_INFRASTRUCTURE_SERVICES
-
-if [ -z "$DOCKER_HOST_IP" ] ; then
-  export DOCKER_HOST_IP=$(docker-machine ip default)
-  echo set DOCKER_HOST_IP $DOCKER_HOST_IP
-fi
-
-if [ -z "$SPRING_DATA_MONGODB_URI" ] ; then
-  export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_HOST_IP?}/mydb
-  echo Set SPRING_DATA_MONGODB_URI $SPRING_DATA_MONGODB_URI
-fi
 
 export SERVICE_HOST=$DOCKER_HOST_IP
 export DOCKER_PORT=8080
