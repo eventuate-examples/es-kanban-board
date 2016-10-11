@@ -16,4 +16,6 @@
     </logger>
     <logger name="io.eventuate.client.java" level='info'>
     </logger>
+    <logger name="io.eventuate.activity" level='debug'>
+    </logger>
 </configuration>
