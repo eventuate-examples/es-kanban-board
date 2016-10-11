@@ -1,5 +1,5 @@
 apigateway:
-  build: ./api-gateway-service/
+  build: ../api-gateway-service/
   ports:
     - "8080:8080"
   environment:
@@ -9,23 +9,23 @@ apigateway:
     TASK_QUERYSIDE_SERVICE_URL: http://taskqueryside:8080
 
 boardcommandside:
-  build: ./board-command-side-service/
+  build: ../board-command-side-service/
   ports:
     - "8081:8080"
 
 taskcommandside:
-  build: ./task-command-side-service/
+  build: ../task-command-side-service/
   ports:
     - "8082:8080"
 
 boardqueryside:
-  build: ./board-query-side-service/
+  build: ../board-query-side-service/
   ports:
     - "8083:8080"
   environment:
     SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
 
-  build: ./task-query-side-service/
+  build: ../task-query-side-service/
   ports:
     - "8084:8080"
   environment:
