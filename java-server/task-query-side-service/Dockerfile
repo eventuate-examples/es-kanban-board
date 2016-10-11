@@ -1,5 +1,4 @@
 FROM java:openjdk-8u91-jdk
-RUN mkdir /app
-WORKDIR /app
-COPY ./build/libs  /app
-CMD java ${JAVA_OPTS} -jar /app/task-query-side-service.jar
+CMD java ${JAVA_OPTS} -jar task-query-side-service.jar
+EXPOSE 8080
+COPY build/libs/task-query-side-service.jar .
