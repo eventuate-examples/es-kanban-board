@@ -54,8 +54,6 @@ apigateway:
   extends:
     file: docker-compose-common.yml
     service: apigateway
-  volumes:
-    - ../api-gateway-service/build/libs:/app
   links:
     - boardcommandside
     - taskcommandside
@@ -79,8 +77,6 @@ boardcommandside:
   extends:
     file: docker-compose-common.yml
     service: boardcommandside
-  volumes:
-    - ../board-command-side-service/build/libs:/app
   links:
     - mysql
     - kafka
@@ -99,8 +95,6 @@ taskcommandside:
   extends:
     file: docker-compose-common.yml
     service: taskcommandside
-  volumes:
-    - ../task-command-side-service/build/libs:/app
   links:
     - mysql
     - kafka
@@ -119,8 +113,6 @@ boardqueryside:
   extends:
     file: docker-compose-common.yml
     service: boardqueryside
-  volumes:
-    - ../board-query-side-service/build/libs:/app
   links:
     - mongodb
     - mysql
@@ -140,8 +132,6 @@ taskqueryside:
   extends:
     file: docker-compose-common.yml
     service: taskqueryside
-  volumes:
-    - ../task-query-side-service/build/libs:/app
   links:
     - mongodb
     - mysql
