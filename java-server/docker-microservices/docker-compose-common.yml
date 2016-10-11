@@ -1,0 +1,46 @@
+apigateway:
+  image: java:openjdk-8u91-jdk
+  command: java -jar /app/api-gateway-service.jar
+  ports:
+    - "8080:8080"
+  environment:
+    BOARD_COMMANDSIDE_SERVICE_URL: http://boardcommandside:8080
+    BOARD_QUERYSIDE_SERVICE_URL: http://boardqueryside:8080
+    TASK_COMMANDSIDE_SERVICE_URL: http://taskcommandside:8080
+    TASK_QUERYSIDE_SERVICE_URL: http://taskqueryside:8080
+
+
+boardcommandside:
+  image: java:openjdk-8u91-jdk
+  command: java -jar /app/board-command-side-service.jar
+  ports:
+    - "8081:8080"
+
+taskcommandside:
+  image: java:openjdk-8u91-jdk
+  command: java -jar /app/task-command-side-service.jar
+  ports:
+    - "8082:8080"
+
+boardqueryside:
+  image: java:openjdk-8u91-jdk
+  command: java -jar /app/board-query-side-service.jar
+  ports:
+    - "8083:8080"
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+
+taskqueryside:
+  image: java:openjdk-8u91-jdk
+  command: java -jar /app/task-query-side-service.jar
+  ports:
+    - "8084:8080"
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+
+mongodb:
+  image: mongo:3.0.4
+  hostname: mongodb
+  command: mongod --smallfiles
+  ports:
+    - "27017:27017"
