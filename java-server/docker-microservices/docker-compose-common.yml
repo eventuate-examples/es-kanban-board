@@ -25,6 +25,7 @@ boardqueryside:
   environment:
     SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
 
+taskqueryside:
   build: ../task-query-side-service/
   ports:
     - "8084:8080"
