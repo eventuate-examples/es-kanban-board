@@ -4,13 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./node_modules/protractor/bin/webdriver-manager update",
+    "test": "babel-node ./node_modules/protractor/bin/protractor --baseUrl http://localhost:8080"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-transform-es2015-template-literals": "^6.8.0",
+    "babel-plugin-transform-regenerator": "^6.16.1",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
-    "chai-json-schema": "^1.4.0"
+    "chai-json-schema": "^1.4.0",
+    "jasmine": "^2.5.2",
+    "jasmine-core": "^2.5.2",
+    "jasmine-spec-reporter": "^2.7.0",
+    "protractor": "^4.0.9",
+    "should": "^11.1.1",
+    "should-http": "^0.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
