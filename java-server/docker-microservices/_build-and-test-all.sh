@@ -78,7 +78,7 @@ cd ..
 
 cd ./docker-microservices
 
-if [ $JS_TESTS_RUN = true] ; then
+if [ $JS_TESTS_RUN = true ] ; then
   cd ../../e2e-tests
 
   npm i
