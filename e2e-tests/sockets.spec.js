@@ -103,16 +103,12 @@ describe('Subscribe to sockets', () => {
       console.log(new Date() - 0);
       console.log('select this board:', `//div[@class='b_board_title']//h4[.='${boardTitle}']`);
 
-      // const els = element.all(by.xpath('//div[contains(@class, "b_board_title")]//h4'));
-      // els.get(1).getText().then(txt => console.log(`el1: '${ txt }'`));
+      // const els = element.all(by.xpath(`//div[contains(@class, "b_board_title")]//h4[contains(text(),'${boardTitle}') or contains('${boardTitle}', text())]`));
+      // els.get(0).getText().then(txt => console.log(`el1: '${ txt }'`));
       // els.get(2).getText().then(txt => console.log(`el2: '${ txt }'`));
       // els.get(0).getText().then(txt => console.log(`el0: '${ txt }'`));
 
-      const boardButtons = element.all(by.xpath(`//div[contains(@class, "b_board_title")]//h4[contains(text(),'${boardTitle}') or contains('${boardTitle}', text())]`));
-      boardButtons.get(1).getText().then(txt => console.log(`el1: '${ txt }'`));
-      boardButtons.get(1).click();
-
-      // element(by.xpath(`//div[contains(@class, 'b_board_title')]//h4[.='${boardTitle}']`)).click();
+      element(by.xpath(`//div[contains(@class, "b_board_title")]//h4[contains(text(),'${boardTitle}') or contains('${boardTitle}', text())]`)).click();
 
       return browser.sleep(1000);
     }).then(done);
