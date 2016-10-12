@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "./node_modules/protractor/bin/webdriver-manager update",
-    "test": "babel-node ./node_modules/protractor/bin/protractor --baseUrl http://${DOCKER_HOST:-localhost}:${DOCKER_PORT:-8080}"
+    "test": "babel-node ./node_modules/protractor/bin/protractor --baseUrl http://${SERVICE_HOST:-localhost}:${DOCKER_PORT:-8080}"
   },
   "author": "",
   "license": "ISC",
