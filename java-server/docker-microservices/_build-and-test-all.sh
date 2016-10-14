@@ -82,7 +82,7 @@ if [ $JS_TESTS_RUN = true ] ; then
   cd ../../e2e-tests
 
   npm i
-  npm run test
+  xvfb-run --server-args="-screen 0 1600x1200x24"  npm run test
 
   cd $ORIGINAL_DIR
 fi
