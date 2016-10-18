@@ -30,9 +30,6 @@ public class PresenceChannelInterceptor extends ChannelInterceptorAdapter {
       case CONNECT:
         logger.info("STOMP Connect [sessionId: " + sessionId + "]");
         break;
-      case CONNECTED:
-        logger.info("STOMP Connected [sessionId: " + sessionId + "]");
-        break;
       case DISCONNECT:
         logger.info("STOMP Disconnect [sessionId: " + sessionId + "]");
         break;
@@ -41,6 +38,13 @@ public class PresenceChannelInterceptor extends ChannelInterceptorAdapter {
         break;
       case NACK:
         logger.info("STOMP Nack [sessionId: " + sessionId + "]");
+        break;
+
+      case CONNECTED:
+        logger.info("STOMP Connected to [sessionId: " + sessionId + "]");
+        break;
+      case MESSAGE:
+        logger.info("STOMP Message to [sessionId: " + sessionId + "]");
         break;
       default:
         break;
