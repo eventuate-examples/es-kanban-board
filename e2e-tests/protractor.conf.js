@@ -9,6 +9,20 @@ require('babel-core/register')({
   "sourceMaps": true
 });
 
+var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+
+var screenshotReporter = new HtmlScreenshotReporter({
+  dest: 'target/screenshots',
+  filename: 'report_' + (new Date() - 0) + '.html',
+  cleanDestination: true,
+  showSummary: true,
+  showConfiguration: true,
+  // reportTitle: false,
+  ignoreSkippedSpecs: true,
+  showQuickLinks: true
+});
+
+
 console.log('e2e/protractor.conf.js is loaded');
 
 exports.config = {
@@ -18,12 +32,24 @@ exports.config = {
     browserName: 'chrome'
   },
   framework: 'jasmine',
+  beforeLaunch: function() {
+    return new Promise(function(resolve){
+      screenshotReporter.beforeLaunch(resolve);
+    });
+  },
+// Close the report after all tests finish
+  afterLaunch: function(exitCode) {
+    return new Promise(function(resolve){
+      screenshotReporter.afterLaunch(resolve.bind(this, exitCode));
+    });
+  },
   onPrepare: function() {
     browser.ignoreSynchronization = true;
 
     var SpecReporter = require('jasmine-spec-reporter');
     // add jasmine spec reporter
     jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
+    jasmine.getEnv().addReporter(screenshotReporter);
 
   }
 };
