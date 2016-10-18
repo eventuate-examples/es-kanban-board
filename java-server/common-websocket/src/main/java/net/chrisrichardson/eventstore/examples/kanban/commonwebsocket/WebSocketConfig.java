@@ -2,8 +2,10 @@ package net.chrisrichardson.eventstore.examples.kanban.commonwebsocket;
 
 import io.eventuate.javaclient.spring.EnableEventHandlers;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -15,6 +17,22 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 @EnableWebSocketMessageBroker
 @EnableEventHandlers
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
+
+    @Bean
+    public PresenceChannelInterceptor presenceChannelInterceptor() {
+        return new PresenceChannelInterceptor();
+    }
+
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        registration.setInterceptors(presenceChannelInterceptor());
+    }
+
+    @Override
+    public void configureClientOutboundChannel(ChannelRegistration registration) {
+        registration.taskExecutor().corePoolSize(8);
+        registration.setInterceptors(presenceChannelInterceptor());
+    }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
