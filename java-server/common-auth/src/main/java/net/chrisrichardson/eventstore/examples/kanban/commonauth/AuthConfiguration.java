@@ -51,6 +51,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/styles/**").permitAll()
+                .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/views/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
