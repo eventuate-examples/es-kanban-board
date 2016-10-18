@@ -17,14 +17,14 @@ export const invoke = function (fn, self, locals) {
     }, fn, self, locals);
 };
 
-export const clearLastSocketMessage = function() {
+export const clearReceivedSocketMessages = function() {
   return browser.executeScript('delete window._lastSocketMessage;');
 };
 
-export const getLastSocketMessage = function() {
+export const getReceivedSocketMessages = function() {
   return browser.executeScript('return window._lastSocketMessage;');
 };
 
 export const setLastSocketMessage = function(val) {
-  return browser.executeScript('window._lastSocketMessage = arguments[0];', val);
+  return browser.executeScript('window._lastSocketMessage = [arguments[0]];', val);
 };

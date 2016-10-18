@@ -96,7 +96,10 @@ app.factory('ServerListenerService', ['$rootScope', '$log', '$window', ($rootSco
             data: { ...eventDataObj, id: entityId },
             msg: { ...bodyObj, eventData: { ...eventDataObj } } // copy into empty object
           };
-          $window._lastSocketMessage = result;
+          if (!$window._lastSocketMessage || !$window._lastSocketMessage.length) {
+            $window._lastSocketMessage = [];
+          }
+          $window._lastSocketMessage.push(result);
 
           const handlers = subscribers
             .filter((s) => (s.eventName === evtType) || (s.eventName === '*'));
