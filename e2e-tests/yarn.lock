@@ -1543,7 +1543,7 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
-lodash@^3.0.0:
+lodash@^3.0.0, lodash@^3.10.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
@@ -1835,6 +1835,13 @@ protractor:
     selenium-webdriver "2.53.3"
     source-map-support "~0.4.0"
     webdriver-manager "^10.2.2"
+
+protractor-console:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/protractor-console/-/protractor-console-2.0.1.tgz#4697d3ce9c999f53018e0576a3d0cf3322b282a7"
+  dependencies:
+    chalk "^1.1.0"
+    lodash "^3.10.0"
 
 protractor-jasmine2-screenshot-reporter:
   version "0.3.2"

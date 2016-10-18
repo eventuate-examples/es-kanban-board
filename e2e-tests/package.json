@@ -29,6 +29,7 @@
     "should-http": "^0.0.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.16.0"
+    "babel-cli": "^6.16.0",
+    "protractor-console": "^2.0.1"
   }
 }

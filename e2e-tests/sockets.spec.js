@@ -10,6 +10,8 @@ import dragDrop from './helpers/draggability';
 
 import { getRandomEmail, getRandomLatinAlpha }  from './helpers/random';
 
+const EC = protractor.ExpectedConditions;
+
 chai.use(chaiJsonSchema);
 
 console.log('nodejs-server/test/e2e/sockets.spec.js is loaded');
@@ -33,11 +35,22 @@ const login = (testEmail) => {
 
 describe('Subscribe to sockets', () => {
 
+  afterEach(function() {
+    browser.manage().logs().get('browser').then(function(browserLog) {
+      // expect(browserLog.length).toEqual(0);
+      // Uncomment to actually see the log.
+      console.log('log: ' + require('util').inspect(browserLog));
+    });
+  });
+
+
   const boardTitle = `New test board ${ getRandomLatinAlpha(8) }`;
   const boardDescription = `New test board ${ getRandomLatinAlpha(8) }`;
   const testEmail = getRandomEmail();
 
   it('should bring me to boards list when logged in', (done) => {
+
+
     //# Overwrite the socketService module with a mocked version
     login(testEmail).then(() => {
 
@@ -59,8 +72,10 @@ describe('Subscribe to sockets', () => {
       console.log('Open dialog..');
       const addBoard = element(by.css('[data-target="#newBoardModal"]'));
 
-      console.log('Expecting #newBoardModal trigger to be present');
-      expect(addBoard.isDisplayed()).toBe(true);
+      // console.log('Expecting #newBoardModal trigger to be present');
+      // expect(addBoard.isDisplayed()).toBe(true);
+      browser.wait(EC.elementToBeClickable(addBoard), 10000, "The link addBoard is still not clickable");
+
       addBoard.click();
 
       console.log(new Date() - 0);
@@ -70,13 +85,16 @@ describe('Subscribe to sockets', () => {
       console.log(new Date() - 0);
 
       console.log('Expecting #newBoardModal modal to be shown');
-      expect(element(by.css('#newBoardModal')).isDisplayed()).toBe(true);
+
+      const newModal = element(by.css('#newBoardModal'));
+      browser.wait(EC.presenceOf(newModal), 10000, "The newModal is still not clickable");
 
       element(by.id("inpBoardName")).sendKeys(boardTitle);
       element(by.id("inpBoardDesc")).sendKeys(boardDescription);
-      element(by.css("button.btn.btn-primary")).click();
 
       injector.clearReceivedSocketMessages();
+
+      element(by.css("button.btn.btn-primary")).click();
 
       return browser.sleep(7000);
 
@@ -143,7 +161,11 @@ describe('Subscribe to sockets', () => {
       console.log(new Date() - 0);
       console.log('click on create task ');
 
-      element(by.linkText("Create Task")).click();
+      const createTaskLink =  element(by.linkText("Create Task"));
+
+      browser.wait(EC.elementToBeClickable(createTaskLink), 10000, "The link createTaskLink is still not clickable");
+
+      createTaskLink.click();
 
       browser.sleep(500).then(() => {
         console.log(new Date() - 0);
