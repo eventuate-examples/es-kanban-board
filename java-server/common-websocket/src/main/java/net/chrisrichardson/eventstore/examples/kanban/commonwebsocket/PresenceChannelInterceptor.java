@@ -16,6 +16,8 @@ public class PresenceChannelInterceptor extends ChannelInterceptorAdapter {
 
     StompHeaderAccessor sha = StompHeaderAccessor.wrap(message);
 
+    logger.info("STOMP command: {}, content type: {}", sha.getCommand(), sha.getContentType());
+
     // ignore non-STOMP messages like heartbeat messages
     if(sha.getCommand() == null) {
       if(sha.isHeartbeat()) {
