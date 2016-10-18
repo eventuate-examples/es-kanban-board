@@ -179,7 +179,13 @@ describe('Subscribe to sockets', () => {
 
       }).then(() => {
         return injector.getReceivedSocketMessages();
-      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
+      }).then((messages) => {
+
+        console.log(messages);
+
+        expect(messages.length).toEqual(1);
+        const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+        console.log(rest);
 
         expect(type).toEqual("TaskCreatedEvent");
 
@@ -219,7 +225,13 @@ describe('Subscribe to sockets', () => {
       }).then(() => {
         console.log('After dragging');
         return injector.getReceivedSocketMessages();
-      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
+      }).then((messages) => {
+
+        console.log(messages);
+
+        expect(messages.length).toEqual(1);
+        const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+        console.log(rest);
 
         expect(type).toEqual("TaskScheduledEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskScheduledEvent);
@@ -248,7 +260,13 @@ describe('Subscribe to sockets', () => {
 
         console.log('After dragging');
         return injector.getReceivedSocketMessages();
-      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
+      }).then((messages) => {
+
+        console.log(messages);
+
+        expect(messages.length).toEqual(1);
+        const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+        console.log(rest);
 
         expect(type).toEqual("TaskStartedEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskStartedEvent);
@@ -276,7 +294,13 @@ describe('Subscribe to sockets', () => {
       }).then(() => {
         console.log('After dragging');
         return injector.getReceivedSocketMessages();
-      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
+      }).then((messages) => {
+
+        console.log(messages);
+
+        expect(messages.length).toEqual(1);
+        const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+        console.log(rest);
 
         expect(type).toEqual("TaskCompletedEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskCompletedEvent);
@@ -305,7 +329,13 @@ describe('Subscribe to sockets', () => {
 
         console.log('After dragging');
         return injector.getReceivedSocketMessages();
-      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
+      }).then((messages) => {
+
+        console.log(messages);
+
+        expect(messages.length).toEqual(1);
+        const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+        console.log(rest);
 
         expect(type).toEqual("TaskBacklogEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskBacklogEvent);
@@ -331,7 +361,14 @@ describe('Subscribe to sockets', () => {
 
         return injector.getReceivedSocketMessages();
 
-      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
+      }).then((messages) => {
+
+        console.log(messages);
+
+        expect(messages.length).toEqual(1);
+        const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+        console.log(rest);
+
         expect(type).toEqual("TaskDeletedEvent");
 
         console.log(data);
