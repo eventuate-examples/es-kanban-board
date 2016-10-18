@@ -18,7 +18,7 @@ export const invoke = function (fn, self, locals) {
 };
 
 export const clearReceivedSocketMessages = function() {
-  return browser.executeScript('delete window._lastSocketMessage;');
+  return browser.executeScript('window._lastSocketMessage = [];');
 };
 
 export const getReceivedSocketMessages = function() {

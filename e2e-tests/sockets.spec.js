@@ -92,7 +92,6 @@ describe('Subscribe to sockets', () => {
       const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
       console.log(rest);
 
-
       expect(type).toEqual("BoardCreatedEvent");
 
       expect(data.title).toEqual(boardTitle);
@@ -152,7 +151,7 @@ describe('Subscribe to sockets', () => {
         element(by.id("inpTaskTitle")).sendKeys(taskTitle);
         element(by.id("inpTaskDesc")).sendKeys(taskDescription);
         element(by.css("button.btn.btn-primary")).click();
-        injector.setLastSocketMessage(123);
+        injector.clearReceivedSocketMessages();
 
         return browser.sleep(7000);
 
@@ -190,7 +189,7 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
@@ -218,7 +217,7 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
@@ -247,7 +246,7 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
@@ -275,7 +274,7 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
@@ -302,7 +301,7 @@ describe('Subscribe to sockets', () => {
 
       browser.sleep(700).then(() => {
         element(by.css("button.btn.btn-danger")).click();
-        injector.setLastSocketMessage(123);
+        injector.clearReceivedSocketMessages();
 
         return browser.sleep(7000);
 
