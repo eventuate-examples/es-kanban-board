@@ -6,7 +6,7 @@
                 <div class="b_board_title m_add_new" ng-if="isMeta(brd)" data-toggle="modal" data-target="#newBoardModal">
                     <h4><span class="glyphicon glyphicon-plus"></span> Create New Board</h4>
                 </div>
-                <div class="b_board_title" ng-if="isBoard(brd)" ng-click="selectBoard(brd, $index)">
+                <div class="b_board_title" ng-if="isBoard(brd)" ng-click="selectBoard(brd, $index)" data-board-id="{{ ((brd.id || '').toString() !== '-1') ? brd.id : '0' }}">
                     <span class="b_board_title-nl">{{$index}}</span><h4>{{brd.title}}</h4>
                     Created {{ brd.createdDate | timeAgo }} by <strong>{{brd.createdBy}}</strong><br/>
                     <div ng-if="brd.updatedDate != brd.createdDate">Updated {{ brd.updatedDate | timeAgo }} </div>

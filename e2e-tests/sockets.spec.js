@@ -94,16 +94,25 @@ describe('Subscribe to sockets', () => {
 
       injector.clearReceivedSocketMessages();
 
-      element(by.css("button.btn.btn-primary")).click();
+      return element.all(by.xpath(`//div[contains(@class, 'b_board_title')]`)).count()
+        .then(function(count) {
+          console.log('Counted ' + count + ' boards.');
+          console.log(new Date() - 0);
 
-      return browser.sleep(7000);
+          element(by.css("button.btn.btn-primary")).click();
 
-    }).then(() => {
-      console.log('getLastSocketMessage..');
+          browser.wait(EC.presenceOf(element(by.xpath(`(//div[contains(@class, 'b_board_title')][@data-board-id != '-1'])[${ count + 1 }]`))), 10000, "The board is not created");
+
+          return Promise.resolve('Board is created');
+        });
+
+    }).then((msg) => {
+      console.log(msg);
+      browser.sleep(10000);
 
       return injector.getReceivedSocketMessages();
     }).then((messages) => {
-      console.log('processing message..');
+      console.log('processing messages..');
       console.log(messages);
 
       expect(messages.length).toEqual(1);
@@ -175,9 +184,13 @@ describe('Subscribe to sockets', () => {
         element(by.css("button.btn.btn-primary")).click();
         injector.clearReceivedSocketMessages();
 
-        return browser.sleep(7000);
-
+        return element.all(by.xpath(`//div[@data-task-id]`)).count().then(function(count) {
+          console.log('Counted ' + count + ' tasks.');
+          return browser.wait(EC.presenceOf(element(by.xpath(`(//div[@data-task-id])[${ count + 1 }]`))), 10000, "The task is not created");
+        });
       }).then(() => {
+        console.log('Checking for task created messages');
+
         return injector.getReceivedSocketMessages();
       }).then((messages) => {
 
