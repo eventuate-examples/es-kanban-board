@@ -23,15 +23,19 @@ var screenshotReporter = new HtmlScreenshotReporter({
 });
 
 
-console.log('e2e/protractor.conf.js is loaded');
+console.log('e2e-tests/protractor.conf.js is loaded');
 
 exports.config = {
   specs: ['*spec.js'],
   showStack: true,
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    "loggingPrefs": {
+      "driver": "ALL",
+      "server": "ALL",
+      "browser": "ALL"}
   },
-  framework: 'jasmine',
+  framework: 'jasmine2',
   beforeLaunch: function() {
     return new Promise(function(resolve){
       screenshotReporter.beforeLaunch(resolve);
