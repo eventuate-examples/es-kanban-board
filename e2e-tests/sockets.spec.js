@@ -76,17 +76,21 @@ describe('Subscribe to sockets', () => {
       element(by.id("inpBoardDesc")).sendKeys(boardDescription);
       element(by.css("button.btn.btn-primary")).click();
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
 
       return browser.sleep(7000);
 
     }).then(() => {
       console.log('getLastSocketMessage..');
 
-      return injector.getLastSocketMessage();
-    }).then(({ type = null, data = {}, msg = null} = {}) => {
+      return injector.getReceivedSocketMessages();
+    }).then((messages) => {
       console.log('processing message..');
-      console.log(msg);
+      console.log(messages);
+
+      expect(messages.length).toEqual(1);
+      const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
+      console.log(rest);
 
       expect(type).toEqual("BoardCreatedEvent");
 
@@ -123,11 +127,11 @@ describe('Subscribe to sockets', () => {
     //});
     //
     beforeEach((done) => {
-      injector.clearLastSocketMessage().then(done);
+      injector.clearReceivedSocketMessages().then(done);
     });
 
     afterEach((done) => {
-      injector.clearLastSocketMessage().then(done);
+      injector.clearReceivedSocketMessages().then(done);
     });
 
     const taskTitle = `test task ${ getRandomLatinAlpha(8) }`;
@@ -147,13 +151,13 @@ describe('Subscribe to sockets', () => {
         element(by.id("inpTaskTitle")).sendKeys(taskTitle);
         element(by.id("inpTaskDesc")).sendKeys(taskDescription);
         element(by.css("button.btn.btn-primary")).click();
-        injector.setLastSocketMessage(123);
+        injector.clearReceivedSocketMessages();
 
         return browser.sleep(7000);
 
       }).then(() => {
-        return injector.getLastSocketMessage();
-      }).then(({ type = null, data = {}, msg = null} = {}) => {
+        return injector.getReceivedSocketMessages();
+      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
 
         expect(type).toEqual("TaskCreatedEvent");
 
@@ -185,15 +189,15 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
 
       }).then(() => {
         console.log('After dragging');
-        return injector.getLastSocketMessage();
-      }).then(({ type = null, data = {}, msg = null} = {}) => {
+        return injector.getReceivedSocketMessages();
+      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
 
         expect(type).toEqual("TaskScheduledEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskScheduledEvent);
@@ -213,7 +217,7 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
@@ -221,8 +225,8 @@ describe('Subscribe to sockets', () => {
       }).then(() => {
 
         console.log('After dragging');
-        return injector.getLastSocketMessage();
-      }).then(({ type = null, data = {}, msg = null} = {}) => {
+        return injector.getReceivedSocketMessages();
+      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
 
         expect(type).toEqual("TaskStartedEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskStartedEvent);
@@ -242,15 +246,15 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
 
       }).then(() => {
         console.log('After dragging');
-        return injector.getLastSocketMessage();
-      }).then(({ type = null, data = {}, msg = null} = {}) => {
+        return injector.getReceivedSocketMessages();
+      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
 
         expect(type).toEqual("TaskCompletedEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskCompletedEvent);
@@ -270,7 +274,7 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.setLastSocketMessage(123);
+      injector.clearReceivedSocketMessages();
       dragDrop(taskToDrag, columnToDragTo).then(() => {
 
         return browser.sleep(7000)
@@ -278,8 +282,8 @@ describe('Subscribe to sockets', () => {
       }).then(() => {
 
         console.log('After dragging');
-        return injector.getLastSocketMessage();
-      }).then(({ type = null, data = {}, msg = null} = {}) => {
+        return injector.getReceivedSocketMessages();
+      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
 
         expect(type).toEqual("TaskBacklogEvent");
         chai.expect(data).to.be.jsonSchema(schemas.TaskBacklogEvent);
@@ -297,15 +301,15 @@ describe('Subscribe to sockets', () => {
 
       browser.sleep(700).then(() => {
         element(by.css("button.btn.btn-danger")).click();
-        injector.setLastSocketMessage(123);
+        injector.clearReceivedSocketMessages();
 
         return browser.sleep(7000);
 
       }).then(() => {
 
-        return injector.getLastSocketMessage();
+        return injector.getReceivedSocketMessages();
 
-      }).then(({ type = null, data = {}, msg = null} = {}) => {
+      }).then(([{ type = null, data = {}, msg = null} = {}]) => {
         expect(type).toEqual("TaskDeletedEvent");
 
         console.log(data);

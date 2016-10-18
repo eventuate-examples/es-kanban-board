@@ -1,7 +1,7 @@
 <div class="b_board_list">
     <h2>Available Boards <small>Pick existing or create new</small></h2>
     <div class="b_board_list-wrap {{ board ? 'm_collapsed' : '' }}">
-        <div class="row ">
+        <div class="row flex">
             <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="brd in boards track by $index">
                 <div class="b_board_title m_add_new" ng-if="isMeta(brd)" data-toggle="modal" data-target="#newBoardModal">
                     <h4><span class="glyphicon glyphicon-plus"></span> Create New Board</h4>

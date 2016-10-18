@@ -137,6 +137,12 @@
   border-right: 0px none;
   padding: 0 .5em;
   position: relative; }
+  .b_board_list-wrap .flex {
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: wrap; }
   .b_board_list-wrap.m_collapsed > * {
     max-height: 12em;
     overflow-y: auto; }
