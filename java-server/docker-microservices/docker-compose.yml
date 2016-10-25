@@ -2,8 +2,6 @@ apigateway:
   extends:
     file: docker-compose-common.yml
     service: apigateway
-  volumes:
-    - ../api-gateway-service/build/libs:/app
   links:
     - boardcommandside
     - taskcommandside
@@ -17,8 +15,6 @@ boardcommandside:
   extends:
     file: docker-compose-common.yml
     service: boardcommandside
-  volumes:
-    - ../board-command-side-service/build/libs:/app
   environment:
     EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
     EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
@@ -27,8 +23,6 @@ taskcommandside:
   extends:
     file: docker-compose-common.yml
     service: taskcommandside
-  volumes:
-    - ../task-command-side-service/build/libs:/app
   environment:
     EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
     EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
@@ -37,8 +31,6 @@ boardqueryside:
   extends:
     file: docker-compose-common.yml
     service: boardqueryside
-  volumes:
-    - ../board-query-side-service/build/libs:/app
   links:
     - mongodb
   environment:
@@ -49,8 +41,6 @@ taskqueryside:
   extends:
     file: docker-compose-common.yml
     service: taskqueryside
-  volumes:
-    - ../task-query-side-service/build/libs:/app
   links:
     - mongodb
   environment:
