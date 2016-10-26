@@ -1,10 +1,8 @@
 apply plugin: 'java'
 
 dependencies {
-    testCompile project(":board-command-side")
-    testCompile project(":board-query-side")
-    testCompile project(":task-command-side")
-    testCompile project(":task-query-side")
+    testCompile project(":common-board")
+    testCompile project(":common-task")
     testCompile project(":test-utils")
 
     testCompile "junit:junit:4.11"
