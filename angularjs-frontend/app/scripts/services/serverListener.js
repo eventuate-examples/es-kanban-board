@@ -17,6 +17,7 @@ app.factory('ServerListenerService', ['$rootScope', '$log', '$window', ($rootSco
       const refId = Math.random().toString().substr(2);
       subscribers = [{ refId, eventName, callback }, ...subscribers];
       getListener();
+      $log.log('App adds listener to ' + eventName + ' event');
       return () => {
         subscribers = subscribers.filter(s => s.refId !== refId);
       }
@@ -31,8 +32,11 @@ app.factory('ServerListenerService', ['$rootScope', '$log', '$window', ($rootSco
       stomp.heartbeat.outgoing = 5000;
       stomp.heartbeat.incoming = 0;
 
+      $log.log('App connecting to stomp server');
       stomp.connect({}, () => {
+        $log.log('App connected to stomp server');
         subscription = stomp.subscribe('/events', (msg) => {
+          $log.log('App received a message from stomp server');
 
           const { body = null, ack, nack, command } = msg;
 

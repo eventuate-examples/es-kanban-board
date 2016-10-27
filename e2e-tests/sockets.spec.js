@@ -4,8 +4,10 @@
 import 'babel-polyfill';
 import chai from 'chai';
 import chaiJsonSchema from 'chai-json-schema';
-import * as injector from './helpers/injector';
+// import * as injector from './helpers/injector';
 import * as schemas from './helpers/schemas';
+import * as ws from './helpers/ws-helper';
+
 import dragDrop from './helpers/draggability';
 
 import { getRandomEmail, getRandomLatinAlpha }  from './helpers/random';
@@ -92,32 +94,19 @@ describe('Subscribe to sockets', () => {
       element(by.id("inpBoardName")).sendKeys(boardTitle);
       element(by.id("inpBoardDesc")).sendKeys(boardDescription);
 
-      injector.clearReceivedSocketMessages();
+      browser.sleep(1000).then(() => {
+        element(by.css("button.btn.btn-primary")).click();
+      });
 
-      return element.all(by.xpath(`//div[contains(@class, 'b_board_title')]`)).count()
-        .then(function(count) {
-          console.log('Counted ' + count + ' boards.');
-          console.log(new Date() - 0);
+      return ws.BoardCreatedEventHelper();
 
-          element(by.css("button.btn.btn-primary")).click();
-
-          browser.wait(EC.presenceOf(element(by.xpath(`(//div[contains(@class, 'b_board_title')][@data-board-id != '-1'])[${ count + 1 }]`))), 10000, "The board is not created");
-
-          return Promise.resolve('Board is created');
-        });
-
-    }).then((msg) => {
-      console.log(msg);
-      browser.sleep(10000);
-
-      return injector.getReceivedSocketMessages();
-    }).then((messages) => {
+    }).then((...messages) => {
       console.log('processing messages..');
       console.log(messages);
 
       expect(messages.length).toEqual(1);
       const [{ type = null, data = {}, msg = null} = {}, ...rest] = messages;
-      console.log(rest);
+      // console.log(rest);
 
       expect(type).toEqual("BoardCreatedEvent");
 
@@ -134,11 +123,6 @@ describe('Subscribe to sockets', () => {
       console.log(new Date() - 0);
       console.log('select this board:', `//div[@class='b_board_title']//h4[.='${boardTitle}']`);
 
-      // const els = element.all(by.xpath(`//div[contains(@class, "b_board_title")]//h4[contains(text(),'${boardTitle}') or contains('${boardTitle}', text())]`));
-      // els.get(0).getText().then(txt => console.log(`el1: '${ txt }'`));
-      // els.get(2).getText().then(txt => console.log(`el2: '${ txt }'`));
-      // els.get(0).getText().then(txt => console.log(`el0: '${ txt }'`));
-
       element(by.xpath(`//div[contains(@class, "b_board_title")]//h4[contains(text(),'${boardTitle}') or contains('${boardTitle}', text())]`)).click();
 
       return browser.sleep(1000);
@@ -153,13 +137,13 @@ describe('Subscribe to sockets', () => {
     //  browser.sleep(1000);
     //});
     //
-    beforeEach((done) => {
-      injector.clearReceivedSocketMessages().then(done);
-    });
-
-    afterEach((done) => {
-      injector.clearReceivedSocketMessages().then(done);
-    });
+    // beforeEach((done) => {
+    //   injector.clearReceivedSocketMessages().then(done);
+    // });
+    //
+    // afterEach((done) => {
+    //   injector.clearReceivedSocketMessages().then(done);
+    // });
 
     const taskTitle = `test task ${ getRandomLatinAlpha(8) }`;
     const taskDescription = `test task description ${ getRandomLatinAlpha(8) }`;
@@ -181,18 +165,17 @@ describe('Subscribe to sockets', () => {
 
         element(by.id("inpTaskTitle")).sendKeys(taskTitle);
         element(by.id("inpTaskDesc")).sendKeys(taskDescription);
-        element(by.css("button.btn.btn-primary")).click();
-        injector.clearReceivedSocketMessages();
 
-        return element.all(by.xpath(`//div[@data-task-id]`)).count().then(function(count) {
-          console.log('Counted ' + count + ' tasks.');
-          return browser.wait(EC.presenceOf(element(by.xpath(`(//div[@data-task-id])[${ count + 1 }]`))), 10000, "The task is not created");
+        browser.sleep(1000).then(() => {
+          element(by.css("button.btn.btn-primary")).click();
         });
-      }).then(() => {
-        console.log('Checking for task created messages');
 
-        return injector.getReceivedSocketMessages();
-      }).then((messages) => {
+        return ws.TaskCreatedEventHelper();
+        // return element.all(by.xpath(`//div[@data-task-id]`)).count().then(function(count) {
+        //   console.log('Counted ' + count + ' tasks.');
+        //   return browser.wait(EC.presenceOf(element(by.xpath(`(//div[@data-task-id])[${ count + 1 }]`))), 10000, "The task is not created");
+        // });
+       }).then((...messages) => {
 
         console.log(messages);
 
@@ -230,15 +213,13 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.clearReceivedSocketMessages();
-      dragDrop(taskToDrag, columnToDragTo).then(() => {
+      // injector.clearReceivedSocketMessages();
 
-        return browser.sleep(7000)
+      browser.sleep(1000).then(() => {
+        dragDrop(taskToDrag, columnToDragTo);
+      });
 
-      }).then(() => {
-        console.log('After dragging');
-        return injector.getReceivedSocketMessages();
-      }).then((messages) => {
+      ws.TaskScheduledEventHelper().then((...messages) => {
 
         console.log(messages);
 
@@ -264,16 +245,11 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.clearReceivedSocketMessages();
-      dragDrop(taskToDrag, columnToDragTo).then(() => {
+      browser.sleep(1000).then(() => {
+        dragDrop(taskToDrag, columnToDragTo);
+      });
 
-        return browser.sleep(7000)
-
-      }).then(() => {
-
-        console.log('After dragging');
-        return injector.getReceivedSocketMessages();
-      }).then((messages) => {
+      ws.TaskStartedEventHelper().then((...messages) => {
 
         console.log(messages);
 
@@ -299,15 +275,11 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.clearReceivedSocketMessages();
-      dragDrop(taskToDrag, columnToDragTo).then(() => {
+      browser.sleep(1000).then(() => {
+        dragDrop(taskToDrag, columnToDragTo);
+      });
 
-        return browser.sleep(7000)
-
-      }).then(() => {
-        console.log('After dragging');
-        return injector.getReceivedSocketMessages();
-      }).then((messages) => {
+      ws.TaskCompletedEventHelper().then((...messages) => {
 
         console.log(messages);
 
@@ -333,16 +305,11 @@ describe('Subscribe to sockets', () => {
       expect(taskToDrag.isPresent()).toBe(true);
       expect(columnToDragTo.isPresent()).toBe(true);
 
-      injector.clearReceivedSocketMessages();
-      dragDrop(taskToDrag, columnToDragTo).then(() => {
+      browser.sleep(1000).then(() => {
+        dragDrop(taskToDrag, columnToDragTo);
+      });
 
-        return browser.sleep(7000)
-
-      }).then(() => {
-
-        console.log('After dragging');
-        return injector.getReceivedSocketMessages();
-      }).then((messages) => {
+      ws.TaskBacklogEventHelper().then((...messages) => {
 
         console.log(messages);
 
@@ -366,15 +333,9 @@ describe('Subscribe to sockets', () => {
 
       browser.sleep(700).then(() => {
         element(by.css("button.btn.btn-danger")).click();
-        injector.clearReceivedSocketMessages();
+      });
 
-        return browser.sleep(7000);
-
-      }).then(() => {
-
-        return injector.getReceivedSocketMessages();
-
-      }).then((messages) => {
+      ws.TaskDeletedEventHelper().then((...messages) => {
 
         console.log(messages);
 
@@ -393,8 +354,6 @@ describe('Subscribe to sockets', () => {
 
     });
 
-
   });
-
 
 });

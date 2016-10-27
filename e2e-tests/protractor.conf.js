@@ -48,7 +48,10 @@ exports.config = {
     });
   },
   onPrepare: function() {
-    browser.ignoreSynchronization = true;
+    // Override the timeout for webdriver.
+    browser.manage().timeouts().setScriptTimeout(60000);
+
+    // browser.ignoreSynchronization = true;
 
     var SpecReporter = require('jasmine-spec-reporter');
     // add jasmine spec reporter
