@@ -13,8 +13,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 @Configuration
 @EnableEventHandlers
-@EnableAutoConfiguration
-@ComponentScan
 @EnableMongoRepositories
 public class BoardViewBackendConfiguration {
 

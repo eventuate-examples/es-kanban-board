@@ -1,6 +1,5 @@
 apigateway:
-  image: java:openjdk-8u91-jdk
-  command: java -jar /app/api-gateway-service.jar
+  build: ./api-gateway-service
   ports:
     - "8080:8080"
   environment:
@@ -11,28 +10,24 @@ apigateway:
 
 
 boardcommandside:
-  image: java:openjdk-8u91-jdk
-  command: java -jar /app/board-command-side-service.jar
+  build: ./board-service
   ports:
     - "8081:8080"
 
 taskcommandside:
-  image: java:openjdk-8u91-jdk
-  command: java -jar /app/task-command-side-service.jar
+  build: ./task-service
   ports:
     - "8082:8080"
 
 boardqueryside:
-  image: java:openjdk-8u91-jdk
-  command: java -jar /app/board-query-side-service.jar
+  build: ./board-view-service
   ports:
     - "8083:8080"
   environment:
     SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
 
 taskqueryside:
-  image: java:openjdk-8u91-jdk
-  command: java -jar /app/task-query-side-service.jar
+  build: ./task-view-service
   ports:
     - "8084:8080"
   environment:

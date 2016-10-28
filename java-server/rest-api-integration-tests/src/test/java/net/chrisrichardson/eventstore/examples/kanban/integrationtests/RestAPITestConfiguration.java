@@ -1,11 +1,16 @@
 package net.chrisrichardson.eventstore.examples.kanban.integrationtests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.eventuate.javaclient.spring.jdbc.EventuateJdbcEventStoreConfiguration;
+import io.eventuate.javaclient.spring.jdbc.EmbeddedTestAggregateStoreConfiguration;
+import net.chrisrichardson.eventstore.examples.kanban.boardservice.web.BoardWebConfiguration;
+import net.chrisrichardson.eventstore.examples.kanban.boardviewservice.web.BoardViewWebConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebsocketEventsTranslator;
+import net.chrisrichardson.eventstore.examples.kanban.taskservice.web.TaskWebConfiguration;
+import net.chrisrichardson.eventstore.examples.kanban.taskviewservice.web.TaskViewWebConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.testutil.BasicWebTestConfiguration;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,12 +26,12 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-@Import({EventuateJdbcEventStoreConfiguration.class,
+@Import({EmbeddedTestAggregateStoreConfiguration.class,
         BasicWebTestConfiguration.class,
-/*        BoardQuerySideConfiguration.class,
-        TaskQuerySideConfiguration.class,
-        BoardCommandSideConfiguration.class,
-        TaskCommandSideConfiguration.class*/})
+        BoardWebConfiguration.class,
+        TaskViewWebConfiguration.class,
+        BoardViewWebConfiguration.class,
+        TaskWebConfiguration.class})
 public class RestAPITestConfiguration {
 
   @Bean

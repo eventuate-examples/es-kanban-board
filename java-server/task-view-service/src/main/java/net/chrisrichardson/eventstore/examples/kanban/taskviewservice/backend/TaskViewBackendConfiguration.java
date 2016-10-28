@@ -17,8 +17,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 
 @Configuration
-@EnableAutoConfiguration
-@ComponentScan
 @EnableMongoRepositories
 @EnableEventHandlers
 public class TaskViewBackendConfiguration {
