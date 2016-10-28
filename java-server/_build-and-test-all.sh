@@ -55,6 +55,8 @@ if [ -z "$EVENTUATE_LOCAL" ] && [ -z "$EVENTUATE_API_KEY_ID" -o -z "$EVENTUATE_A
   exit -1
 fi
 
+${DOCKER_COMPOSE?} build
+
 ${DOCKER_COMPOSE?} up -d
 
 ./wait-for-services.sh $DOCKER_HOST_IP 8080 8081 8082 8083 8084
