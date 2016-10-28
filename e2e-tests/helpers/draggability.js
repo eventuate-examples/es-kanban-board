@@ -4,13 +4,13 @@
 export default function(elementToDrag, elementToDragTo) {
 
   const targetOffset = { x: -10, y: -10 };
-  browser.actions().
+  return browser.actions().
     mouseMove(elementToDrag).
     mouseDown(elementToDrag).
     mouseMove(elementToDragTo, targetOffset).
     mouseUp(elementToDragTo, targetOffset).
     perform();
 
-  return browser.sleep(300);
+  // return browser.sleep(300);
 
 }

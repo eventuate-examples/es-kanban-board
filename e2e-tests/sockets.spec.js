@@ -171,10 +171,7 @@ describe('Subscribe to sockets', () => {
         });
 
         return ws.TaskCreatedEventHelper();
-        // return element.all(by.xpath(`//div[@data-task-id]`)).count().then(function(count) {
-        //   console.log('Counted ' + count + ' tasks.');
-        //   return browser.wait(EC.presenceOf(element(by.xpath(`(//div[@data-task-id])[${ count + 1 }]`))), 10000, "The task is not created");
-        // });
+
        }).then((...messages) => {
 
         console.log(messages);
