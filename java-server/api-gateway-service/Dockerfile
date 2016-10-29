@@ -1,4 +1,3 @@
 FROM java:openjdk-8u91-jdk
-CMD java -jar api-gateway-service.jar
-EXPOSE 8081
+CMD java ${JAVA_OPTS} -jar api-gateway-service.jar
 COPY build/libs/api-gateway-service.jar .
