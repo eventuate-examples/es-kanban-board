@@ -2,7 +2,6 @@ package net.chrisrichardson.eventstore.examples.kanban.boardviewservice.backend;
 
 
 import io.eventuate.javaclient.spring.EnableEventHandlers;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,19 +15,19 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 @EnableMongoRepositories
 public class BoardViewBackendConfiguration {
 
-    @Bean
-    public BoardViewEventSubscriber boardQueryWorkflow(BoardUpdateService boardInfoUpdateService) {
-        return new BoardViewEventSubscriber(boardInfoUpdateService);
-    }
+  @Bean
+  public BoardViewEventSubscriber boardViewEventSubscriber(BoardUpdateService boardInfoUpdateService) {
+    return new BoardViewEventSubscriber(boardInfoUpdateService);
+  }
 
-    @Bean
-    public BoardUpdateService boardInfoUpdateService(BoardRepository boardRepository) {
-        return new BoardUpdateService(boardRepository);
-    }
+  @Bean
+  public BoardUpdateService boardInfoUpdateService(BoardRepository boardRepository) {
+    return new BoardUpdateService(boardRepository);
+  }
 
-    @Bean
-    public HttpMessageConverters customConverters() {
-        HttpMessageConverter<?> additional = new MappingJackson2HttpMessageConverter();
-        return new HttpMessageConverters(additional);
-    }
+  @Bean
+  public HttpMessageConverters customConverters() {
+    HttpMessageConverter<?> additional = new MappingJackson2HttpMessageConverter();
+    return new HttpMessageConverters(additional);
+  }
 }

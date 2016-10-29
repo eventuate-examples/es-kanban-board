@@ -23,7 +23,7 @@ public class TaskViewBackendConfiguration {
 
 
     @Bean
-    public TaskViewEventSubscriber taskQueryWorkflow(TaskUpdateService taskUpdateService) {
+    public TaskViewEventSubscriber taskViewEventSubscriber(TaskUpdateService taskUpdateService) {
         return new TaskViewEventSubscriber(taskUpdateService);
     }
 
