@@ -73,31 +73,52 @@ There are the following services:
 * Board query side - maintains a denormalized view of tasks
 
 
-# Signing up for Eventuate
+# Building and running the application
 
-To run the Kanban Board application you need credentials for the Eventuate platform.
-You can get them by [signing up here](https://signup.eventuate.io/).
+This is a Gradle project.
+However, you do not need to install Gradle since it will be downloaded automatically.
+You just need to have Java 8 installed.
 
-# Building the application
+The details of how to build and run the services depend slightly on whether you are using Eventuate SaaS or Eventuate Local.
 
-This application is written using Java 8.
-You can then build the application using this Gradle command:
+## Building and running using Eventuate SaaS
+
+First, must [sign up to get your credentials](https://signup.eventuate.io/) in order to get free access to the SaaS version.
+
+Next, build the application
 
 ```
 cd java-server
 ./gradlew assemble
 ```
 
-Note: to use Gradle you just need to have JDK 8 in your path. You do not need to install Gradle.
-
-# Running
-
-Now that you built the application you can run it using these commands:
+Next, you can launch the services using [Docker Compose](https://docs.docker.com/compose/):
 
 ```
 cd java-server/docker-microservices
 docker-compose up -d
 ```
+
+## Building and running using Eventuate Local
+
+First, build the application
+
+```
+cd java-server
+./gradlew assemble -P eventuateDriver=local
+```
+
+Next, launch the services using [Docker Compose](https://docs.docker.com/compose/):
+
+```
+cd java-server/docker-microservices
+export DOCKER_HOST_IP=...
+docker-compose -f docker-compose-eventuate-local.yml up -d
+```
+
+Note: You need to set `DOCKER_HOST_IP` before running Docker Compose.
+This must be an IP address or resolvable hostname.
+It cannot be `localhost`.
 
 # Using the Kanban board
 
