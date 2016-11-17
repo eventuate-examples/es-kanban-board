@@ -119,6 +119,7 @@ docker-compose -f docker-compose-eventuate-local.yml up -d
 Note: You need to set `DOCKER_HOST_IP` before running Docker Compose.
 This must be an IP address or resolvable hostname.
 It cannot be `localhost`.
+See this [guide to setting `DOCKER_HOST_IP`](http://eventuate.io/docs/usingdocker.html) for more information.
 
 # Using the Kanban board
 
