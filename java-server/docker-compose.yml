@@ -1,0 +1,53 @@
+apigateway:
+  extends:
+    file: docker-compose-common.yml
+    service: apigateway
+  links:
+    - boardcommandside
+    - taskcommandside
+    - boardqueryside
+    - taskqueryside
+  environment:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
+
+boardcommandside:
+  extends:
+    file: docker-compose-common.yml
+    service: boardcommandside
+  environment:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
+
+taskcommandside:
+  extends:
+    file: docker-compose-common.yml
+    service: taskcommandside
+  environment:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
+
+boardqueryside:
+  extends:
+    file: docker-compose-common.yml
+    service: boardqueryside
+  links:
+    - mongodb
+  environment:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
+
+taskqueryside:
+  extends:
+    file: docker-compose-common.yml
+    service: taskqueryside
+  links:
+    - mongodb
+  environment:
+    EVENTUATE_API_KEY_ID: ${EVENTUATE_API_KEY_ID}
+    EVENTUATE_API_KEY_SECRET: ${EVENTUATE_API_KEY_SECRET}
+
+mongodb:
+  extends:
+    file: docker-compose-common.yml
+    service: mongodb
