@@ -1,0 +1,41 @@
+apigateway:
+  build: ./api-gateway-service
+  ports:
+    - "8080:8080"
+  environment:
+    BOARD_COMMANDSIDE_SERVICE_URL: http://boardcommandside:8081
+    BOARD_QUERYSIDE_SERVICE_URL: http://boardqueryside:8083
+    TASK_COMMANDSIDE_SERVICE_URL: http://taskcommandside:8082
+    TASK_QUERYSIDE_SERVICE_URL: http://taskqueryside:8084
+
+
+boardcommandside:
+  build: ./board-service
+  ports:
+    - "8081:8081"
+
+taskcommandside:
+  build: ./task-service
+  ports:
+    - "8082:8082"
+
+boardqueryside:
+  build: ./board-view-service
+  ports:
+    - "8083:8083"
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+
+taskqueryside:
+  build: ./task-view-service
+  ports:
+    - "8084:8084"
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/kanban
+
+mongodb:
+  image: mongo:3.0.4
+  hostname: mongodb
+  command: mongod --smallfiles
+  ports:
+    - "27017:27017"

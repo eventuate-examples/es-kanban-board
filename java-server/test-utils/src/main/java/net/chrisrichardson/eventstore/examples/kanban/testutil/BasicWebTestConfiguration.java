@@ -23,7 +23,10 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-@Import({WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
+@Import({WebConfiguration.class,
+        AuthConfiguration.class,
+        WebSocketConfig.class,
+        WebSocketSecurityConfig.class})
 public class BasicWebTestConfiguration {
 
     @Bean
