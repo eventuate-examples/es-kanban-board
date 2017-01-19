@@ -7,10 +7,10 @@ fi
 
 echo "arguments" $*
 
-./gradlew $* clean build -xtest
+./gradlew $BUILD_AND_TEST_ALL_EXTRA_GRADLE_ARGS $* clean build -xtest
 
 cd ./standalone-service
 
 echo "arguments" $*
 
-../gradlew $* clean copyAngularJS bootRun
+../gradlew $BUILD_AND_TEST_ALL_EXTRA_GRADLE_ARGS $* clean copyAngularJS bootRun
