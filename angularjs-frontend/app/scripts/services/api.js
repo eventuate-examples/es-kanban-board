@@ -220,7 +220,12 @@ app.factory('ApiService', ['$http', '$q', 'AuthenticationService', ($http, $q, a
       },
       params,
       data
-    }));
+    }).then(
+      data => data,
+      data => {
+        console.error(data);
+        return data
+      }));
   }
 
   //function wrap(fn, data) {

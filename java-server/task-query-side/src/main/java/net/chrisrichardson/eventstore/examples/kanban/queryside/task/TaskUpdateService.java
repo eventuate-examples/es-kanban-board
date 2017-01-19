@@ -22,7 +22,8 @@ public class TaskUpdateService {
 
     public Task delete(String id) {
         Task taskToDelete = taskRepository.findOne(id);
-        taskRepository.delete(taskToDelete);
+        if(taskToDelete!=null)
+            taskRepository.delete(taskToDelete);
         return taskToDelete;
     }
 

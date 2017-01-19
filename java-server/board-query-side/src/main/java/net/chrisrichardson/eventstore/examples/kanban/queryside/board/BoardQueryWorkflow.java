@@ -19,10 +19,11 @@ public class BoardQueryWorkflow{
 
     @EventHandlerMethod
     public void create(DispatchedEvent<BoardCreatedEvent> de) {
+        log.debug("BoardQueryWorkflow start processing event : {}", de.getEvent());
         BoardCreatedEvent event = de.getEvent();
         String id = de.getEntityId();
 
-        log.info("BoardQueryWorkflow got event : {}", de.getEvent());
         boardUpdateService.create(id, event.getBoardInfo());
+        log.debug("BoardQueryWorkflow finish processing event : {}", de.getEvent());
     }
 }

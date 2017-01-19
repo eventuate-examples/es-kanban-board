@@ -8,13 +8,25 @@
             <Pattern>%d{HH:mm:ss.SSS}  %-5level %logger{36} - %msg%n</Pattern>
         </layout>
     </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logfile.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS}  %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-    <root level="error">
+    <root level="info">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
     </root>
     <logger name="org.springframework" level='info'>
     </logger>
-    <logger name="io.eventuate.client.java" level='info'>
+    <logger name="io.eventuate.client.java" level='debug'>
+    </logger>
+    <logger name="io.eventuate.javaclient" level='debug'>
+    </logger>
+    <logger name="net.chrisrichardson.eventstore.examples.kanban" level='debug'>
     </logger>
     <logger name="io.eventuate.activity" level='debug'>
     </logger>

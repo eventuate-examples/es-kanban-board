@@ -2,6 +2,8 @@
 
 set -e
 
+ORIGINAL_DIR=$(pwd)
+
 if [ -z "$DOCKER_HOST_IP" ] ; then
   if [ -z "$DOCKER_HOST" ] ; then
     export DOCKER_HOST_IP=`hostname`
@@ -40,6 +42,12 @@ if [ "$1" = "--no-rm" ] ; then
   shift
 fi
 
+JS_TESTS_RUN=false
+
+if [ "$1" = "--run-js-tests" ] ; then
+  JS_TESTS_RUN=true
+  shift
+fi
 
 ${DOCKER_COMPOSE?} up -d mongodb $EXTRA_INFRASTRUCTURE_SERVICES
 
@@ -70,6 +78,15 @@ cd ..
 ./gradlew $BUILD_AND_TEST_ALL_EXTRA_GRADLE_ARGS -P ignoreE2EFailures=false $* :e2e-test:cleanTest :e2e-test:test
 
 cd ./docker-microservices
+
+if [ $JS_TESTS_RUN = true ] ; then
+  cd ../../e2e-tests
+
+  npm i
+  xvfb-run --server-args="-screen 0 1440x890x24"  npm run test
+
+  cd $ORIGINAL_DIR
+fi
 
 if [ $NO_RM = false ] ; then
   ${DOCKER_COMPOSE?} stop

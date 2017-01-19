@@ -9,10 +9,12 @@
         </layout>
     </appender>
 
-    <root level="error">
+    <root level="info">
         <appender-ref ref="STDOUT" />
     </root>
     <logger name="org.springframework" level='info'>
+    </logger>
+    <logger name="org.springframework.web.socket" level='debug'>
     </logger>
     <logger name="io.eventuate.client.java" level='info'>
     </logger>

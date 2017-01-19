@@ -24,53 +24,59 @@ import java.security.SecureRandom;
 @EnableConfigurationProperties({AuthProperties.class})
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AuthProperties securityProperties;
+  @Autowired
+  private AuthProperties securityProperties;
 
-    @Autowired
-    private TokenAuthenticationService tokenAuthenticationService;
+  @Autowired
+  private TokenAuthenticationService tokenAuthenticationService;
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication();
-    }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.inMemoryAuthentication();
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .formLogin().loginPage("/index.html").and()
-                .authorizeRequests()
-                .antMatchers("/health").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll()
-                .antMatchers("/v2/api-docs").permitAll()
-                .antMatchers("/js/**").permitAll()
-                .antMatchers("/styles/**").permitAll()
-                .antMatchers("/views/**").permitAll()
-                .antMatchers("/webjars/**").permitAll()
-                .antMatchers("/swagger-resources/**").permitAll()
-                .antMatchers("/configuration/**").permitAll()
-                .antMatchers("/validatorUrl/**").permitAll()
-                .antMatchers("/index.html").permitAll()
-                .antMatchers("/events/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
-                .antMatchers(HttpMethod.GET, "/events").permitAll()
-                .anyRequest().authenticated().and()
-                .addFilterBefore(new StatelessAuthenticationFilter(tokenAuthenticationService), UsernamePasswordAuthenticationFilter.class);
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.
+            csrf()
+              .disable()
+            .formLogin()
+              .loginPage("/index.html")
+              .and()
+            .authorizeRequests()
+              .antMatchers("/health").permitAll()
+              .antMatchers("/swagger-ui.html").permitAll()
+              .antMatchers("/v2/api-docs").permitAll()
+              .antMatchers("/js/**").permitAll()
+              .antMatchers("/styles/**").permitAll()
+              .antMatchers("/fonts/**").permitAll()
+              .antMatchers("/views/**").permitAll()
+              .antMatchers("/webjars/**").permitAll()
+              .antMatchers("/swagger-resources/**").permitAll()
+              .antMatchers("/configuration/**").permitAll()
+              .antMatchers("/validatorUrl/**").permitAll()
+              .antMatchers("/index.html").permitAll()
+              .antMatchers("/events/**").permitAll()
+              .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
+              .antMatchers(HttpMethod.GET, "/events").permitAll()
+              .anyRequest().authenticated()
+              .and()
+            .addFilterBefore(new StatelessAuthenticationFilter(tokenAuthenticationService), UsernamePasswordAuthenticationFilter.class);
+  }
 
-    @Bean
-    public TokenService tokenService() {
-        KeyBasedPersistenceTokenService res = new KeyBasedPersistenceTokenService();
-        res.setSecureRandom(new SecureRandom());
-        res.setServerSecret(securityProperties.getServerSecret());
-        res.setServerInteger(securityProperties.getServerInteger());
+  @Bean
+  public TokenService tokenService() {
+    KeyBasedPersistenceTokenService res = new KeyBasedPersistenceTokenService();
+    res.setSecureRandom(new SecureRandom());
+    res.setServerSecret(securityProperties.getServerSecret());
+    res.setServerInteger(securityProperties.getServerInteger());
 
-        return res;
-    }
+    return res;
+  }
 }
