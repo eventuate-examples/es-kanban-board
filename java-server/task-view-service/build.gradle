@@ -1,0 +1,17 @@
+apply plugin: VerifyEventStoreEnvironmentPlugin
+apply plugin: EventuateDependencyPlugin
+
+apply plugin: 'spring-boot'
+
+dependencies {
+    compile project(":common-task")
+    compile project(":common-web")
+    compile project(":common-swagger")
+    compile project(":common-auth")
+
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+
+    testCompile "junit:junit:4.11"
+}
