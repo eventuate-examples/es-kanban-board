@@ -1,5 +1,6 @@
 apigateway:
   build: ./api-gateway-service
+  restart: unless-stopped
   ports:
     - "8080:8080"
   environment:
@@ -11,16 +12,19 @@ apigateway:
 
 boardcommandside:
   build: ./board-service
+  restart: unless-stopped
   ports:
     - "8081:8081"
 
 taskcommandside:
   build: ./task-service
+  restart: unless-stopped
   ports:
     - "8082:8082"
 
 boardqueryside:
   build: ./board-view-service
+  restart: unless-stopped
   ports:
     - "8083:8083"
   environment:
@@ -28,6 +32,7 @@ boardqueryside:
 
 taskqueryside:
   build: ./task-view-service
+  restart: unless-stopped
   ports:
     - "8084:8084"
   environment:
