@@ -1,7 +1,7 @@
 apply plugin: VerifyEventStoreEnvironmentPlugin
 apply plugin: EventuateDependencyPlugin
 
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile project(":common-board")
@@ -16,7 +16,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 
-    testCompile "junit:junit:4.11"
+    testCompile "junit:junit:4.12"
 }
 
 task copyAngularJS(type: Copy) {

@@ -3,5 +3,5 @@ apply plugin: 'java'
 dependencies {
     compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
 
-    testCompile "junit:junit:4.11"
+    testCompile "junit:junit:4.12"
 }

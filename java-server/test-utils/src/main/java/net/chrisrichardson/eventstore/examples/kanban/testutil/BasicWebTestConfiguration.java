@@ -1,7 +1,7 @@
 package net.chrisrichardson.eventstore.examples.kanban.testutil;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthConfiguration;
+import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthSecurityConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketConfig;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketSecurityConfig;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebsocketEventsTranslator;
@@ -23,7 +23,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-@Import({WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
+@Import({WebConfiguration.class, AuthSecurityConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
 public class BasicWebTestConfiguration {
 
     @Bean

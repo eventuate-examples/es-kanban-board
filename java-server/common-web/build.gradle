@@ -4,6 +4,7 @@ dependencies {
 
     compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-hateoas:$springBootVersion"
 
-    testCompile "junit:junit:4.11"
+    testCompile "junit:junit:4.12"
 }

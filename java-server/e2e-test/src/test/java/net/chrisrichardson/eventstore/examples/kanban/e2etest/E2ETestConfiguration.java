@@ -1,7 +1,7 @@
 package net.chrisrichardson.eventstore.examples.kanban.e2etest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.eventuate.javaclient.spring.jdbc.EventuateJdbcEventStoreConfiguration;
+import io.eventuate.javaclient.spring.jdbc.EmbeddedTestAggregateStoreConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebsocketEventsTranslator;
 import net.chrisrichardson.eventstore.examples.kanban.testutil.BasicWebTestConfiguration;
 import org.apache.http.client.HttpClient;
@@ -21,7 +21,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-@Import({EventuateJdbcEventStoreConfiguration.class, BasicWebTestConfiguration.class})
+@Import({EmbeddedTestAggregateStoreConfiguration.class, BasicWebTestConfiguration.class})
 public class E2ETestConfiguration {
 
     @Bean

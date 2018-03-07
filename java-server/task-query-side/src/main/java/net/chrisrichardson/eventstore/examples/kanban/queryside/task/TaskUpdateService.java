@@ -4,6 +4,7 @@ import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskInfo;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.model.Task;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * Created by popikyardo on 15.10.15.
@@ -21,17 +22,19 @@ public class TaskUpdateService {
     }
 
     public Task delete(String id) {
-        Task taskToDelete = taskRepository.findOne(id);
-        taskRepository.delete(taskToDelete);
-        return taskToDelete;
+        Optional<Task> taskToDelete = taskRepository.findById(id);
+        taskToDelete.ifPresent(taskRepository::delete);
+        return taskToDelete.orElse(null);
     }
 
     public Task update(String id, TaskInfo taskInfo) {
-        Task taskToUpdate = taskRepository.findOne(id);
+        Optional<Task> taskToUpdateOptional = taskRepository.findById(id);
 
-        if(taskToUpdate== null) {
+        if (!taskToUpdateOptional.isPresent()) {
             throw new NoSuchElementException(String.format("Task with id %s doesn't exist", id));
         }
+
+        Task taskToUpdate = taskToUpdateOptional.get();
 
         if(taskInfo.getTaskDetails()!=null) {
             taskToUpdate.setTitle(taskInfo.getTaskDetails().getTitle());

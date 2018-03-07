@@ -2,11 +2,9 @@ package net.chrisrichardson.eventstore.examples.kanban.e2etest;
 
 import net.chrisrichardson.eventstore.examples.kanban.testutil.AbstractAuthTest;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = {E2ETestConfiguration.class})
-@WebAppConfiguration
+@SpringBootTest(classes = {E2ETestConfiguration.class})
 public class AuthControllerTest extends AbstractAuthTest {
 
     @Value("#{systemEnvironment['DOCKER_HOST_IP']}")

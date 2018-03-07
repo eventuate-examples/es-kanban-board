@@ -76,8 +76,8 @@ public class TaskCommandController {
             return new HistoryResponse(ewm.getEvents().stream().map(e -> {
                 HistoryEvent res = new HistoryEvent();
                 res.setId(ewm.getEntityIdAndVersion().getEntityId());
-                res.setEventType(e.getClass().getCanonicalName());
-                res.setEventData(e);
+                res.setEventType(e.getEvent().getClass().getCanonicalName());
+                res.setEventData(e.getEvent());
                 return res;
             }).collect(Collectors.toList()));
         });

@@ -9,5 +9,5 @@ dependencies {
     compile "org.springframework.security:spring-security-web:4.0.2.RELEASE"
 
 
-    testCompile "junit:junit:4.11"
+    testCompile "junit:junit:4.12"
 }
