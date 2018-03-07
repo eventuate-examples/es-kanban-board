@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -48,14 +47,14 @@ public class GatewayController {
     }
 
     @RequestMapping(value = "/**", method = {GET, POST, PUT, DELETE})
-    public String proxyRequest(HttpServletRequest request) throws NoSuchRequestHandlingMethodException, IOException, URISyntaxException {
+    public String proxyRequest(HttpServletRequest request) throws IOException, URISyntaxException {
         HttpUriRequest proxiedRequest = createHttpUriRequest(request);
         log.info("request: {}", proxiedRequest);
         HttpResponse proxiedResponse = httpClient.execute(proxiedRequest);
         return read(proxiedResponse.getEntity().getContent());
     }
 
-    private HttpUriRequest createHttpUriRequest(HttpServletRequest request) throws URISyntaxException, NoSuchRequestHandlingMethodException, IOException {
+    private HttpUriRequest createHttpUriRequest(HttpServletRequest request) throws URISyntaxException, IOException {
         URLRequestTransformer urlRequestTransformer = new URLRequestTransformer(apiGatewayProperties);
         ContentRequestTransformer contentRequestTransformer = new ContentRequestTransformer();
         HeadersRequestTransformer headersRequestTransformer = new HeadersRequestTransformer();

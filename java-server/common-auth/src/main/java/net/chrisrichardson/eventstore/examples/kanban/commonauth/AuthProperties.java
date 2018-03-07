@@ -1,8 +1,9 @@
 package net.chrisrichardson.eventstore.examples.kanban.commonauth;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 
-@ConfigurationProperties(locations = "classpath:auth.properties", ignoreUnknownFields = false, prefix = "auth")
+@ConfigurationProperties(ignoreUnknownFields = false, prefix = "auth")
 public class AuthProperties {
     private String serverSecret;
     private Integer serverInteger;

@@ -27,7 +27,7 @@ public class BoardQueryController {
 
     @RequestMapping(value = "api/boards/{id}", method = GET)
     public ResponseEntity<BoardQueryResponse> getBoard(@PathVariable("id") String id) {
-        return Optional.ofNullable(boardRepository.findOne(id))
+        return boardRepository.findById(id)
                 .map(b -> new ResponseEntity<>(new BoardQueryResponse(b), OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

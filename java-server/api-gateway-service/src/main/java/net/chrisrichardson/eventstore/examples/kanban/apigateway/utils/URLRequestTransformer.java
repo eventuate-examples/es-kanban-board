@@ -3,7 +3,6 @@ package net.chrisrichardson.eventstore.examples.kanban.apigateway.utils;
 import net.chrisrichardson.eventstore.examples.kanban.apigateway.ApiGatewayProperties;
 import org.apache.http.client.methods.RequestBuilder;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
@@ -18,7 +17,7 @@ public class URLRequestTransformer extends ProxyRequestTransformer {
     }
 
     @Override
-    public RequestBuilder transform(HttpServletRequest request) throws NoSuchRequestHandlingMethodException, URISyntaxException {
+    public RequestBuilder transform(HttpServletRequest request) throws URISyntaxException {
         String requestURI = request.getRequestURI();
         URI uri;
         if (request.getQueryString() != null && !request.getQueryString().isEmpty()) {
@@ -32,14 +31,14 @@ public class URLRequestTransformer extends ProxyRequestTransformer {
         return rb;
     }
 
-    private String getServiceUrl(String requestURI, HttpServletRequest httpServletRequest) throws NoSuchRequestHandlingMethodException {
+    private String getServiceUrl(String requestURI, HttpServletRequest httpServletRequest) {
 
         ApiGatewayProperties.Endpoint endpoint =
                 apiGatewayProperties.getEndpoints().stream()
                         .filter(e ->
                                         requestURI.matches(e.getPath()) && e.getMethod() == RequestMethod.valueOf(httpServletRequest.getMethod())
                         )
-                        .findFirst().orElseThrow(() -> new NoSuchRequestHandlingMethodException(httpServletRequest));
+                        .findFirst().orElseThrow(() -> new IllegalArgumentException("No such method: " + httpServletRequest));
         return endpoint.getLocation() + requestURI;
     }
 }

@@ -1,7 +1,6 @@
 package net.chrisrichardson.eventstore.examples.kanban.apigateway.utils;
 
 import org.apache.http.client.methods.RequestBuilder;
-import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -12,7 +11,7 @@ public class HeadersRequestTransformer extends ProxyRequestTransformer {
 
 
     @Override
-    public RequestBuilder transform(HttpServletRequest request) throws NoSuchRequestHandlingMethodException, URISyntaxException, IOException {
+    public RequestBuilder transform(HttpServletRequest request) throws URISyntaxException, IOException {
         RequestBuilder requestBuilder = predecessor.transform(request);
 
         Enumeration<String> headerNames = request.getHeaderNames();
