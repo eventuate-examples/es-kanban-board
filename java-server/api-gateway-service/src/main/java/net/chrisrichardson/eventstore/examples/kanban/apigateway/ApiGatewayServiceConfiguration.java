@@ -2,7 +2,7 @@ package net.chrisrichardson.eventstore.examples.kanban.apigateway;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.eventuate.javaclient.driver.EventuateDriverConfiguration;
-import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthConfiguration;
+import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthSecurityConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonweb.WebConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketConfig;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketSecurityConfig;
@@ -26,7 +26,7 @@ import java.util.Collections;
 
 @Configuration
 @ComponentScan
-@Import({EventuateDriverConfiguration.class, WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
+@Import({EventuateDriverConfiguration.class, WebConfiguration.class, AuthSecurityConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
 @EnableConfigurationProperties({ApiGatewayProperties.class})
 public class ApiGatewayServiceConfiguration {
 

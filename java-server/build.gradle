@@ -17,7 +17,7 @@ jar {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+    gradleVersion = '3.5'
 }
 
 
@@ -27,6 +27,7 @@ subprojects {
     targetCompatibility = 1.8
 
     repositories {
+        jcenter()
         mavenCentral()
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
     }

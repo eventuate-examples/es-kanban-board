@@ -12,7 +12,6 @@ include 'board-query-side'
 include 'task-query-side'
 
 include 'standalone-service'
-include 'rest-api-integration-tests'
 include 'api-gateway-service'
 include 'common-auth'
 include 'common-websocket'

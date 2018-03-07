@@ -8,23 +8,17 @@ import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskDescriptio
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskDetails;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.TaskInfo;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.model.BacklogResponse;
-import net.chrisrichardson.eventstore.examples.kanban.common.task.model.ChangeTaskStatusRequest;
-import net.chrisrichardson.eventstore.examples.kanban.common.task.model.HistoryResponse;
 import net.chrisrichardson.eventstore.examples.kanban.common.task.model.TaskResponse;
 import net.chrisrichardson.eventstore.examples.kanban.testutil.model.TestHistoryResponse;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
 
-import static net.chrisrichardson.eventstore.examples.kanban.testutil.util.TestUtil.awaitPredicatePasses;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@IntegrationTest({"server.port=0"})
 public abstract class AbstractRestApiTest extends BaseTest {
 
     @Test

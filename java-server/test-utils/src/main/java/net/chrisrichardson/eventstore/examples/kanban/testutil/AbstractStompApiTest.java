@@ -18,7 +18,6 @@ import net.chrisrichardson.eventstore.examples.kanban.testutil.util.StompListene
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
@@ -26,7 +25,6 @@ import java.io.IOException;
 import static net.chrisrichardson.eventstore.examples.kanban.testutil.util.TestUtil.awaitPredicatePasses;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@IntegrationTest({"server.port=0"})
 public abstract class AbstractStompApiTest extends BaseTest {
 
     private ObjectMapper mapper = new ObjectMapper();
