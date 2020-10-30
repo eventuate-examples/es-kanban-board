@@ -1,15 +1,15 @@
 package net.chrisrichardson.eventstore.examples.kanban.apigateway;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.eventuate.javaclient.driver.EventuateDriverConfiguration;
-import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthConfiguration;
+import io.eventuate.local.java.spring.javaclient.driver.EventuateDriverConfiguration;
+import net.chrisrichardson.eventstore.examples.kanban.commonauth.AuthSecurityConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonweb.WebConfiguration;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketConfig;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebSocketSecurityConfig;
 import net.chrisrichardson.eventstore.examples.kanban.commonwebsocket.WebsocketEventsTranslator;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,7 +26,7 @@ import java.util.Collections;
 
 @Configuration
 @ComponentScan
-@Import({EventuateDriverConfiguration.class, WebConfiguration.class, AuthConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
+@Import({EventuateDriverConfiguration.class, WebConfiguration.class, AuthSecurityConfiguration.class, WebSocketConfig.class, WebSocketSecurityConfig.class})
 @EnableConfigurationProperties({ApiGatewayProperties.class})
 public class ApiGatewayServiceConfiguration {
 
@@ -36,7 +36,7 @@ public class ApiGatewayServiceConfiguration {
   }
 
   @Bean
-  public RestTemplate restTemplate(HttpMessageConverters converters) {
+  public RestTemplate restTemplate() {
 
     // we have to define Apache HTTP client to use the PATCH verb
     MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();

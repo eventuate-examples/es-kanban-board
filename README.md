@@ -58,9 +58,7 @@ It consists of an event handler that subscribes to Board and Task events and upd
 
 * WebSocket gateway - it subscribes to Board and Task events published by the event store and republishes them as web socket events.
 
-# Deploy as a monolith or as microservices
-
-The server can either be deployed as a monolith (as shown in the above diagram) or it can be deployed as microservices. The following diagram shows the microservice architecture.
+# Deploy as microservices
 
 <img class="img-responsive" src="eventuate-kanban-microservices.png">
 
@@ -79,59 +77,30 @@ This is a Gradle project.
 However, you do not need to install Gradle since it will be downloaded automatically.
 You just need to have Java 8 installed.
 
-The details of how to build and run the services depend slightly on whether you are using Eventuate SaaS or Eventuate Local.
-
-## Building and running using Eventuate SaaS
-
-First, must [sign up to get your credentials](https://signup.eventuate.io/) in order to get free access to the SaaS version.
-
-Next, build the application
-
-```
-cd java-server
-./gradlew assemble
-```
-
-Next, you can launch the services using [Docker Compose](https://docs.docker.com/compose/):
-
-```
-cd java-server/docker-microservices
-docker-compose up -d
-```
-
 ## Building and running using Eventuate Local
 
 First, build the application
 
 ```
 cd java-server
-./gradlew assemble -P eventuateDriver=local
+./gradlew assemble
 ```
 
 Next, launch the services using [Docker Compose](https://docs.docker.com/compose/):
 
 ```
-cd java-server/docker-microservices
-export DOCKER_HOST_IP=...
-docker-compose -f docker-compose-eventuate-local.yml up -d
+./gradlew mysqlbinlogComposeUp
 ```
-
-Note: You need to set `DOCKER_HOST_IP` before running Docker Compose.
-This must be an IP address or resolvable hostname.
-It cannot be `localhost`.
-See this [guide to setting `DOCKER_HOST_IP`](http://eventuate.io/docs/usingdocker.html) for more information.
 
 # Using the Kanban board
 
-Open the url `http://${DOCKER_HOST_IP}:8080`, login and create boards and tasks.
-
-Note: DOCKER_HOST_IP is the IP address of the machine running the Docker daemon.
+Open the url `http://localhost:8080`, login and create boards and tasks.
 
 # Using the Swagger UI
 
 The individual services are Swagger "enabled".
 
-Open the url `http://${DOCKER_HOST_IP}:<SERVICE-PORT>/swagger-ui.html`
+Open the url `http://localhost:<SERVICE-PORT>/swagger-ui/index.html`
 
 # Got questions?
 

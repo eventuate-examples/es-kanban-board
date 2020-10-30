@@ -5,45 +5,45 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class KanbanWebSocketEvent {
 
-    private String eventId;
-    private String eventType;
-    private String eventData;
-    private String entityId;
+  private String eventId;
+  private String eventType;
+  private String eventData;
+  private String entityId;
 
-    public String getEventId() {
-        return eventId;
-    }
+  public String getEventId() {
+    return eventId;
+  }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
-    }
+  public void setEventId(String eventId) {
+    this.eventId = eventId;
+  }
 
-    public String getEventType() {
-        return eventType;
-    }
+  public String getEventType() {
+    return eventType;
+  }
 
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
+  public void setEventType(String eventType) {
+    this.eventType = eventType;
+  }
 
-    public String getEventData() {
-        return eventData;
-    }
+  public String getEventData() {
+    return eventData;
+  }
 
-    public void setEventData(String eventData) {
-        this.eventData = eventData;
-    }
+  public void setEventData(String eventData) {
+    this.eventData = eventData;
+  }
 
-    public String getEntityId() {
-        return entityId;
-    }
+  public String getEntityId() {
+    return entityId;
+  }
 
-    public void setEntityId(String entityId) {
-        this.entityId = entityId;
-    }
+  public void setEntityId(String entityId) {
+    this.entityId = entityId;
+  }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 }

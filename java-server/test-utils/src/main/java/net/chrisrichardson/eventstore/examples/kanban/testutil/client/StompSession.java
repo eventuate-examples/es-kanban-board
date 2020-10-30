@@ -19,10 +19,10 @@ package net.chrisrichardson.eventstore.examples.kanban.testutil.client;
 
 public interface StompSession {
 
-	void subscribe(String destination, String receiptId);
+  void subscribe(String destination, String receiptId);
 
-	void send(String destination, Object payload);
+  void send(String destination, Object payload);
 
-	void disconnect();
+  void disconnect();
 
 }

@@ -1,25 +1,21 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath "com.avast.gradle:gradle-docker-compose-plugin:$dockerComposePluginVersion"
     }
 }
+
+apply plugin: 'docker-compose'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-
-jar {
-    baseName = 'kanban-app'
-    version =  '0.1.0'
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
-}
-
 
 subprojects {
     apply plugin: 'java'
@@ -27,7 +23,27 @@ subprojects {
     targetCompatibility = 1.8
 
     repositories {
+        jcenter()
         mavenCentral()
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
+    }
+}
+
+dockerCompose {
+    environment.put "EVENTUATE_COMMON_VERSION", eventuateCommonImageVersion
+    environment.put "EVENTUATE_CDC_VERSION", eventuateCdcImageVersion
+    environment.put "EVENTUATE_JAVA_BASE_IMAGE_VERSION", eventuateExamplesBaseImageVersion
+
+    removeOrphans = true
+
+    mysqlbinlog {
+        projectName = null
+        removeContainers = project.ext.removeContainers
+    }
+
+    mysqlbinloginfrastructure {
+        projectName = null
+        startedServices = ["cdc-service", "mongodb"]
+        removeContainers = project.ext.removeContainers
     }
 }

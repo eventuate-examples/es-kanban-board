@@ -1,15 +1,17 @@
-apply plugin: VerifyEventStoreEnvironmentPlugin
-apply plugin: EventuateDependencyPlugin
-
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile project(":task-query-side")
+    compile project(":task-query-side-service-api-web")
+    compile project(":task-command-side-service-api-messaging")
+
+    compile project(":common")
     compile project(":common-swagger")
     compile project(":common-auth")
+    compile project(":common-web")
+
+    compile "io.eventuate.local.java:eventuate-local-java-spring-jdbc:$eventuateLocalVersion"
 
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-
-    testCompile "junit:junit:4.11"
+    compile "org.springframework.boot:spring-boot-starter-hateoas:$springBootVersion"
 }

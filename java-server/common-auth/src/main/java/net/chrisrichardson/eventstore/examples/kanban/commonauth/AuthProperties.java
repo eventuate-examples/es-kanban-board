@@ -1,25 +1,27 @@
 package net.chrisrichardson.eventstore.examples.kanban.commonauth;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 
-@ConfigurationProperties(locations = "classpath:auth.properties", ignoreUnknownFields = false, prefix = "auth")
 public class AuthProperties {
-    private String serverSecret;
-    private Integer serverInteger;
+  @Value("${auth.server.secret}")
+  private String serverSecret;
 
-    public String getServerSecret() {
-        return serverSecret;
-    }
+  @Value("${auth.server.integer}")
+  private Integer serverInteger;
 
-    public void setServerSecret(String serverSecret) {
-        this.serverSecret = serverSecret;
-    }
+  public String getServerSecret() {
+    return serverSecret;
+  }
 
-    public Integer getServerInteger() {
-        return serverInteger;
-    }
+  public void setServerSecret(String serverSecret) {
+    this.serverSecret = serverSecret;
+  }
 
-    public void setServerInteger(Integer serverInteger) {
-        this.serverInteger = serverInteger;
-    }
+  public Integer getServerInteger() {
+    return serverInteger;
+  }
+
+  public void setServerInteger(Integer serverInteger) {
+    this.serverInteger = serverInteger;
+  }
 }

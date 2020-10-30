@@ -1,14 +1,11 @@
-apply plugin: VerifyEventStoreEnvironmentPlugin
-apply plugin: EventuateDependencyPlugin
-
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile project(":common-board")
-    compile project(":common-task")
-    compile project(":common-auth-controller")
+    compile project(":common-auth-web")
     compile project(":common-web")
     compile project(":common-websocket")
+
+    compile "io.eventuate.local.java:eventuate-local-java-spring-jdbc:$eventuateLocalVersion"
 
     compile "org.apache.httpcomponents:httpclient:4.5"
     compile "org.apache.httpcomponents:fluent-hc:4.5.1"
@@ -24,4 +21,4 @@ task copyAngularJS(type: Copy) {
     into "build/resources/main/static"
 }
 
-jar.dependsOn(copyAngularJS)
+bootJar.dependsOn(copyAngularJS)

@@ -27,90 +27,92 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class StompListener {
 
-    private String token;
-    private String destination;
-    private String host;
-    private int port;
+  private String token;
+  private String destination;
+  private String host;
+  private int port;
 
-    private ObjectMapper mapper = new ObjectMapper();
+  private ObjectMapper mapper = new ObjectMapper();
 
-    private List<KanbanWebSocketEvent> events = new ArrayList<>();
+  private List<KanbanWebSocketEvent> events = new ArrayList<>();
 
-    private static Log log = LogFactory.getLog(StompListener.class);
+  private static Log log = LogFactory.getLog(StompListener.class);
 
-    public StompListener(String token, String destination, String host, int port) {
-        this.token = token;
-        this.destination = destination;
-        this.host = host;
-        this.port = port;
+  public StompListener(String token, String destination, String host, int port) {
+    this.token = token;
+    this.destination = destination;
+    this.host = host;
+    this.port = port;
 
-        initializeStompClient();
-    }
+    initializeStompClient();
+  }
 
-    private void initializeStompClient() {
-        WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
-        final AtomicReference<Throwable> failure = new AtomicReference<>();
+  private void initializeStompClient() {
+    WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
+    final AtomicReference<Throwable> failure = new AtomicReference<>();
 
-        List<Transport> transports = new ArrayList<>();
-        transports.add(new WebSocketTransport(new StandardWebSocketClient()));
-        transports.add(new RestTemplateXhrTransport(new RestTemplate()));
+    List<Transport> transports = new ArrayList<>();
+    transports.add(new WebSocketTransport(new StandardWebSocketClient()));
+    transports.add(new RestTemplateXhrTransport(new RestTemplate()));
 
-        StompMessageHandler handler = new StompMessageHandler() {
+    StompMessageHandler handler = new StompMessageHandler() {
 
-            private StompSession stompSession;
+      private StompSession stompSession;
 
-            @Override
-            public void afterConnected(StompSession stompSession, StompHeaderAccessor headers) {
-                this.stompSession = stompSession;
-                this.stompSession.subscribe(destination, null);
+      @Override
+      public void afterConnected(StompSession stompSession, StompHeaderAccessor headers) {
+        this.stompSession = stompSession;
+        this.stompSession.subscribe(destination, null);
 
-            }
+      }
 
-            @Override
-            public void handleMessage(Message<byte[]> message) {
-                String json = new String(message.getPayload());
-                try {
-                    events.add(mapper.readValue(json, KanbanWebSocketEvent.class));
-                } catch (IOException e) {
-                    new RuntimeException(e);
-                }
-            }
-
-            @Override
-            public void handleError(Message<byte[]> message) {
-                StompHeaderAccessor accessor = StompHeaderAccessor.wrap(message);
-                String error = "[Producer] " + accessor.getShortLogMessage(message.getPayload());
-                log.error(error);
-                failure.set(new Exception(error));
-            }
-
-            @Override
-            public void handleReceipt(String receiptId) {}
-
-            @Override
-            public void afterDisconnected() {}
-        };
-
+      @Override
+      public void handleMessage(Message<byte[]> message) {
+        String json = new String(message.getPayload());
         try {
-            URI uri = new URI("http://"+host+":"+port+"/events");
-            WebSocketStompClient stompClient = new WebSocketStompClient(uri, headers, new SockJsClient(transports));
-            stompClient.setMessageConverter(new MappingJackson2MessageConverter());
-            headers.add("x-access-token", token);
-            stompClient.connect(handler);
-
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+          events.add(mapper.readValue(json, KanbanWebSocketEvent.class));
+        } catch (IOException e) {
+          new RuntimeException(e);
         }
+      }
 
+      @Override
+      public void handleError(Message<byte[]> message) {
+        StompHeaderAccessor accessor = StompHeaderAccessor.wrap(message);
+        String error = "[Producer] " + accessor.getShortLogMessage(message.getPayload());
+        log.error(error);
+        failure.set(new Exception(error));
+      }
+
+      @Override
+      public void handleReceipt(String receiptId) {
+      }
+
+      @Override
+      public void afterDisconnected() {
+      }
+    };
+
+    try {
+      URI uri = new URI("http://" + host + ":" + port + "/events");
+      WebSocketStompClient stompClient = new WebSocketStompClient(uri, headers, new SockJsClient(transports));
+      stompClient.setMessageConverter(new MappingJackson2MessageConverter());
+      headers.add("x-access-token", token);
+      stompClient.connect(handler);
+
+      try {
+        Thread.sleep(500);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+
+    } catch (URISyntaxException e) {
+      throw new RuntimeException(e);
     }
 
-    public List<KanbanWebSocketEvent> getEvents() {
-        return events;
-    }
+  }
+
+  public List<KanbanWebSocketEvent> getEvents() {
+    return events;
+  }
 }
