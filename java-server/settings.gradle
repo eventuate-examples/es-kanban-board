@@ -1,24 +1,29 @@
 include 'test-utils'
 
 include 'common'
-include 'common-board'
-include 'common-task'
 include 'common-web'
 include 'common-swagger'
-
-include 'board-command-side'
-include 'task-command-side'
-include 'board-query-side'
-include 'task-query-side'
-
-include 'standalone-service'
-include 'api-gateway-service'
-include 'common-auth'
 include 'common-websocket'
+include 'common-auth'
+include 'common-auth-web'
+include 'common-auth-api-web'
+
 include 'board-command-side-service'
-include 'board-query-side-service'
+include 'board-command-side-service-api-messaging'
+include 'board-command-side-service-api-web'
+
+include 'task-command-side-service-api-messaging'
+include 'task-command-side-service-api-web'
 include 'task-command-side-service'
+
 include 'task-query-side-service'
-include 'common-auth-controller'
+include 'task-query-side-service-api-web'
+
+
+include 'board-query-side-service'
+include 'board-query-side-service-api-web'
+
+include 'api-gateway-service'
+
 include 'e2e-test'
 

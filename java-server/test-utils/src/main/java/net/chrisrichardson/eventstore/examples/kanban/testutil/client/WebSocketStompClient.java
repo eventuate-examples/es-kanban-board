@@ -41,115 +41,109 @@ import java.util.List;
 
 public class WebSocketStompClient implements StompClient {
 
-	private static Log logger = LogFactory.getLog(WebSocketStompClient.class);
+  private static Log logger = LogFactory.getLog(WebSocketStompClient.class);
 
 
-	private final URI uri;
+  private final URI uri;
 
-	private final WebSocketHttpHeaders headers;
+  private final WebSocketHttpHeaders headers;
 
-	private final WebSocketClient webSocketClient;
+  private final WebSocketClient webSocketClient;
 
-	private MessageConverter messageConverter;
-
-
-	public WebSocketStompClient(URI uri, WebSocketHttpHeaders headers, WebSocketClient webSocketClient) {
-		this.uri = uri;
-		this.headers = headers;
-		this.webSocketClient = webSocketClient;
-	}
-
-	public void setMessageConverter(MessageConverter messageConverter) {
-		this.messageConverter = messageConverter;
-	}
-
-	@Override
-	public void connect(StompMessageHandler stompMessageHandler) {
-		try {
-			StompWebSocketHandler webSocketHandler = new StompWebSocketHandler(stompMessageHandler, this.messageConverter);
-			this.webSocketClient.doHandshake(webSocketHandler, this.headers, this.uri).get();
-		}
-		catch (Exception e) {
-			throw new IllegalStateException(e);
-		}
-	}
+  private MessageConverter messageConverter;
 
 
-	private static class StompWebSocketHandler extends AbstractWebSocketHandler {
+  public WebSocketStompClient(URI uri, WebSocketHttpHeaders headers, WebSocketClient webSocketClient) {
+    this.uri = uri;
+    this.headers = headers;
+    this.webSocketClient = webSocketClient;
+  }
 
-		private static final Charset UTF_8 = Charset.forName("UTF-8");
+  public void setMessageConverter(MessageConverter messageConverter) {
+    this.messageConverter = messageConverter;
+  }
 
-		private final StompMessageHandler stompMessageHandler;
-
-		private final MessageConverter messageConverter;
-
-		private final StompEncoder encoder = new StompEncoder();
-
-		private final StompDecoder decoder = new StompDecoder();
-
-
-		private StompWebSocketHandler(StompMessageHandler delegate) {
-			this(delegate, new MappingJackson2MessageConverter());
-		}
-
-		private StompWebSocketHandler(StompMessageHandler delegate, MessageConverter messageConverter) {
-			this.stompMessageHandler = delegate;
-			this.messageConverter = messageConverter;
-		}
+  @Override
+  public void connect(StompMessageHandler stompMessageHandler) {
+    try {
+      StompWebSocketHandler webSocketHandler = new StompWebSocketHandler(stompMessageHandler, this.messageConverter);
+      this.webSocketClient.doHandshake(webSocketHandler, this.headers, this.uri).get();
+    } catch (Exception e) {
+      throw new IllegalStateException(e);
+    }
+  }
 
 
-		@Override
-		public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+  private static class StompWebSocketHandler extends AbstractWebSocketHandler {
 
-			StompHeaderAccessor headers = StompHeaderAccessor.create(StompCommand.CONNECT);
-			headers.setAcceptVersion("1.1,1.2");
-			headers.setHeartbeat(0, 0);
-			Message<byte[]> message = MessageBuilder.withPayload(new byte[0]).setHeaders(headers).build();
+    private static final Charset UTF_8 = Charset.forName("UTF-8");
 
-			TextMessage textMessage = new TextMessage(new String(this.encoder.encode(message), UTF_8));
-			session.sendMessage(textMessage);
-		}
+    private final StompMessageHandler stompMessageHandler;
 
-		@Override
-		protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) throws Exception {
+    private final MessageConverter messageConverter;
 
-			ByteBuffer payload = ByteBuffer.wrap(textMessage.getPayload().getBytes(UTF_8));
-			List<Message<byte[]>> messages = this.decoder.decode(payload);
+    private final StompEncoder encoder = new StompEncoder();
 
-			for (Message message : messages) {
-				StompHeaderAccessor headers = StompHeaderAccessor.wrap(message);
-				if (StompCommand.CONNECTED.equals(headers.getCommand())) {
-					WebSocketStompSession stompSession = new WebSocketStompSession(session, this.messageConverter);
-					this.stompMessageHandler.afterConnected(stompSession, headers);
-				}
-				else if (StompCommand.MESSAGE.equals(headers.getCommand())) {
-					this.stompMessageHandler.handleMessage(message);
-				}
-				else if (StompCommand.RECEIPT.equals(headers.getCommand())) {
-					this.stompMessageHandler.handleReceipt(headers.getReceiptId());
-				}
-				else if (StompCommand.ERROR.equals(headers.getCommand())) {
-					this.stompMessageHandler.handleError(message);
-				}
-				else if (StompCommand.ERROR.equals(headers.getCommand())) {
-					this.stompMessageHandler.afterDisconnected();
-				}
-				else {
-					logger.debug("Unhandled message " + message);
-				}
-			}
-		}
+    private final StompDecoder decoder = new StompDecoder();
 
-		@Override
-		public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-			logger.error("WebSocket transport error", exception);
-		}
 
-		@Override
-		public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-			this.stompMessageHandler.afterDisconnected();
-		}
-	}
+    private StompWebSocketHandler(StompMessageHandler delegate) {
+      this(delegate, new MappingJackson2MessageConverter());
+    }
+
+    private StompWebSocketHandler(StompMessageHandler delegate, MessageConverter messageConverter) {
+      this.stompMessageHandler = delegate;
+      this.messageConverter = messageConverter;
+    }
+
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+
+      StompHeaderAccessor headers = StompHeaderAccessor.create(StompCommand.CONNECT);
+      headers.setAcceptVersion("1.1,1.2");
+      headers.setHeartbeat(0, 0);
+      Message<byte[]> message = MessageBuilder.withPayload(new byte[0]).setHeaders(headers).build();
+
+      TextMessage textMessage = new TextMessage(new String(this.encoder.encode(message), UTF_8));
+      session.sendMessage(textMessage);
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage textMessage) throws Exception {
+
+      ByteBuffer payload = ByteBuffer.wrap(textMessage.getPayload().getBytes(UTF_8));
+      List<Message<byte[]>> messages = this.decoder.decode(payload);
+
+      for (Message message : messages) {
+        StompHeaderAccessor headers = StompHeaderAccessor.wrap(message);
+        if (StompCommand.CONNECTED.equals(headers.getCommand())) {
+          WebSocketStompSession stompSession = new WebSocketStompSession(session, this.messageConverter);
+          this.stompMessageHandler.afterConnected(stompSession, headers);
+        } else if (StompCommand.MESSAGE.equals(headers.getCommand())) {
+          this.stompMessageHandler.handleMessage(message);
+        } else if (StompCommand.RECEIPT.equals(headers.getCommand())) {
+          this.stompMessageHandler.handleReceipt(headers.getReceiptId());
+        } else if (StompCommand.ERROR.equals(headers.getCommand())) {
+          this.stompMessageHandler.handleError(message);
+        } else if (StompCommand.ERROR.equals(headers.getCommand())) {
+          this.stompMessageHandler.afterDisconnected();
+        } else {
+          logger.debug("Unhandled message " + message);
+        }
+      }
+    }
+
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+      logger.error("WebSocket transport error", exception);
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+      this.stompMessageHandler.afterDisconnected();
+    }
+  }
 
 
 }

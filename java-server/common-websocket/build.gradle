@@ -1,14 +1,16 @@
 apply plugin: 'java'
 
 dependencies {
-    compile project(":common-board")
-    compile project(":common-task")
-    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile project(":common")
 
-    compile "org.springframework.security:spring-security-config:4.0.2.RELEASE"
+    compile project(":task-command-side-service-api-messaging")
+    compile project(":board-command-side-service-api-messaging")
+
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-aop:$springBootVersion"
+
     compile "org.springframework.security:spring-security-messaging:4.0.2.RELEASE"
-    compile "org.springframework.security:spring-security-web:4.0.2.RELEASE"
 
     compile "org.springframework.boot:spring-boot-starter-websocket:$springBootVersion"
 

@@ -1,3 +1,3 @@
-FROM java:openjdk-8u91-jdk
-CMD java ${JAVA_OPTS} -jar api-gateway-service.jar
-COPY build/libs/api-gateway-service.jar .
+ARG baseImageVersion
+FROM eventuateio/eventuate-examples-docker-images-spring-example-base-image:$baseImageVersion
+COPY build/libs/api-gateway-service.jar service.jar

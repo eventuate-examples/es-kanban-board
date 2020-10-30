@@ -1,11 +1,13 @@
 apply plugin: 'java'
 
 dependencies {
-    compile project(":common-auth-controller")
+    compile project(":task-query-side-service-api-web")
+    compile project(":task-command-side-service-api-web")
+    compile project(":board-query-side-service-api-web")
+    compile project(":board-command-side-service-api-web")
+    compile project(":common-auth-api-web")
     compile project(":common-websocket")
     compile project(":common-web")
-
-    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
 
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "com.fasterxml.jackson.module:jackson-module-scala_2.10:2.4.3"

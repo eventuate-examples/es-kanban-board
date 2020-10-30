@@ -7,15 +7,15 @@ import org.springframework.security.config.annotation.web.socket.AbstractSecurit
 @Configuration
 public class WebSocketSecurityConfig extends AbstractSecurityWebSocketMessageBrokerConfigurer {
 
-    protected void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
-        messages.anyMessage().permitAll();
-    }
+  protected void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
+    messages.anyMessage().permitAll();
+  }
 
-    /**
-     * Disables CSRF for Websockets.
-     */
-    @Override
-    protected boolean sameOriginDisabled() {
-        return true;
-    }
+  /**
+   * Disables CSRF for Websockets.
+   */
+  @Override
+  protected boolean sameOriginDisabled() {
+    return true;
+  }
 }

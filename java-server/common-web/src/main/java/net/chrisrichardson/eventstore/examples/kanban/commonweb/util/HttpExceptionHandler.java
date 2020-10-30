@@ -13,15 +13,15 @@ import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class HttpExceptionHandler {
-    private static final Logger logger = LoggerFactory.getLogger(HttpExceptionHandler.class);
+  private static final Logger logger = LoggerFactory.getLogger(HttpExceptionHandler.class);
 
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public ResponseEntity defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws Exception {
-        logger.error("Exception occured!", e);
-        if (e instanceof NoSuchElementException) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.badRequest().build();
+  @ExceptionHandler(Exception.class)
+  @ResponseBody
+  public ResponseEntity defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws Exception {
+    logger.error("Exception occured!", e);
+    if (e instanceof NoSuchElementException) {
+      return ResponseEntity.notFound().build();
     }
+    return ResponseEntity.badRequest().build();
+  }
 }

@@ -19,6 +19,6 @@ package net.chrisrichardson.eventstore.examples.kanban.testutil.client;
 
 public interface StompClient {
 
-	void connect(StompMessageHandler messageHandler);
+  void connect(StompMessageHandler messageHandler);
 
 }

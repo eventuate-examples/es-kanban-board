@@ -1,7 +1,3 @@
 dependencies {
-    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
-
-    compile "io.springfox:springfox-swagger2:2.3.0"
-    compile "io.springfox:springfox-swagger-ui:2.3.0"
-
+    compile "io.eventuate.util:eventuate-util-spring-swagger:$eventuateUtilVersion"
 }

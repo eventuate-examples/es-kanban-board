@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+dependencies {
+    compile project(":common-auth")
+
+    compile "org.springframework.boot:spring-boot-starter-validation:$springBootVersion"
+}
